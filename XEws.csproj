@@ -75,6 +75,7 @@
     <None Include="en-US\XEws.Help.pshproj">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="README.md" />
     <None Include="XEws.format.ps1xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
