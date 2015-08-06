@@ -83,6 +83,10 @@
     <Content Include="en-US\XEws.dll-Help.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="EWSManagedAPI\Microsoft.Exchange.WebServices.Auth.dll" />
+    <Content Include="EWSManagedAPI\Microsoft.Exchange.WebServices.Auth.xml" />
+    <Content Include="EWSManagedAPI\Microsoft.Exchange.WebServices.dll" />
+    <Content Include="EWSManagedAPI\Microsoft.Exchange.WebServices.xml" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
