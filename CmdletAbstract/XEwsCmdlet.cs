@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Management.Automation;
 using Microsoft.Exchange.WebServices.Data;
 using System.Net;
 using XEws.Tracer;
+using System.Security;
 
 namespace XEws.CmdletAbstract
 {
@@ -56,7 +53,7 @@ namespace XEws.CmdletAbstract
         /// <param name="userName">Username of the user connecting to the Ews. It should be in email address format (UPN).</param>
         /// <param name="password">Password of the user connecting to the Ews.</param>
         /// <param name="ewsUrl">Ews url. It usualy looks like https://host.domain.com/EWS/Exchange.asmx</param>
-        internal void SetSessionVariable(string userName, string password, Uri ewsUrl)
+        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl)
         {
             ValidateUserName(userName);
 
@@ -79,7 +76,7 @@ namespace XEws.CmdletAbstract
         /// <param name="traceEnabled">Enable ews tracing.</param>
         /// <param name="traceFolder">Location where trace items will be saved.</param>
         /// <param name="traceFlags">Options what to trace.</param>
-        internal void SetSessionVariable(string userName, string password, Uri ewsUrl, string impersonateEmail, bool traceEnabled, string traceFolder, TraceFlags traceFlags)
+        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl, string impersonateEmail, bool traceEnabled, string traceFolder, TraceFlags traceFlags)
         {
             this.SetSessionVariable(userName, password, ewsUrl);
             this.SetSessionVariable(impersonateEmail, traceEnabled, traceFolder, traceFlags);
@@ -136,7 +133,7 @@ namespace XEws.CmdletAbstract
         /// Helper method for validating if the username is in correct UPN format.
         /// </summary>
         /// <param name="userName">username to check.</param>
-        private void ValidateUserName(string userName)
+        internal void ValidateUserName(string userName)
         {
             try
             {

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Management.Automation;
 using XEws.CmdletAbstract;
+using System.Security;
 
 namespace XEws.Cmdlet
 {
@@ -29,7 +26,7 @@ namespace XEws.Cmdlet
             set;
         }
 
-        new private string Password
+        new private SecureString Password
         {
             get;
             set;

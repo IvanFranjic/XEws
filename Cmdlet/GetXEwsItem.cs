@@ -55,6 +55,20 @@ namespace XEws.Cmdlet
             }
         }
 
+        private string messageSubject = String.Empty;
+        [Parameter()]
+        public string MessageSubject
+        {
+            get
+            {
+                return this.messageSubject;
+            }
+            set
+            {
+                this.messageSubject = value;
+            }
+        }
+
         protected override void ProcessRecord()
         {
             if (this.Folder == null)
@@ -77,7 +91,7 @@ namespace XEws.Cmdlet
 
                 remainingMessages -= pageSize;
 
-                List<Item> items = this.GetItem(this.Folder, iView, startDate, endDate);
+                List<Item> items = this.GetItem(this.Folder, iView, startDate, endDate, messageSubject);
                 WriteObject(items, true);
             }
         }        

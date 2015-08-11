@@ -53,12 +53,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CmdletAbstract\XEwsCmdlet.cs" />
+    <Compile Include="CmdletAbstract\XEwsDelegateCmdlet.cs" />
     <Compile Include="CmdletAbstract\XEwsFolderCmdlet.cs" />
     <Compile Include="CmdletAbstract\XEwsItemCmdlet.cs" />
     <Compile Include="CmdletAbstract\XEwsItemMoveCmdlet.cs" />
     <Compile Include="CmdletAbstract\XEwsSessionCmdlet.cs" />
+    <Compile Include="Cmdlet\AddXEwsDelegate.cs" />
     <Compile Include="Cmdlet\AddXEwsFolder.cs" />
     <Compile Include="Cmdlet\CopyXEwsItem.cs" />
+    <Compile Include="Cmdlet\GetXEwsDelegate.cs" />
     <Compile Include="Cmdlet\GetXEwsFolder.cs" />
     <Compile Include="Cmdlet\GetXEwsFolderByName.cs" />
     <Compile Include="Cmdlet\GetXEwsItem.cs" />
@@ -67,6 +70,7 @@
     <Compile Include="Cmdlet\ImportXEwsSession.cs" />
     <Compile Include="Cmdlet\MoveXEwsItem.cs" />
     <Compile Include="Cmdlet\RemoveXEwsFolder.cs" />
+    <Compile Include="Cmdlet\SetXEwsDelegate.cs" />
     <Compile Include="Cmdlet\SetXEwsSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tracer\TraceListener.cs" />
@@ -77,6 +81,9 @@
     </None>
     <None Include="README.md" />
     <None Include="XEws.format.ps1xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="XEws.psd1">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

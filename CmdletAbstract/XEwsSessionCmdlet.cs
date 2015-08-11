@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Management.Automation;
 using Microsoft.Exchange.WebServices.Data;
 using System.IO;
+using System.Security;
 
 namespace XEws.CmdletAbstract
 {
@@ -19,7 +16,7 @@ namespace XEws.CmdletAbstract
         }
 
         [Parameter()]
-        public string Password
+        public SecureString Password
         {
             get;
             set;
