@@ -156,11 +156,7 @@ namespace XEws.CmdletAbstract
 
         internal void MoveFolder(Folder folderToMove, Folder destinationFolder)
         {
-            foreach(WellKnownFolderName knownFolder in Enum.GetValues(typeof(WellKnownFolderName)))
-            {
-                if (knownFolder.ToString() == folderToMove.DisplayName)
-                    throw new InvalidOperationException(String.Format("Could not move well known folder '{0}'", knownFolder.ToString()));
-            }
+            // No need to check if folder to move is WellKnownFolder since those cannot be moved anyway.
 
             Folder checkFolderToMove = this.GetFolder(destinationFolder, folderToMove.DisplayName);
 
