@@ -13,7 +13,7 @@ namespace XEws.Cmdlet
 
         protected override void ProcessRecord()
         {
-            List<XEwsDelegate> delegates = this.GetDelegate(this.GetSessionVariable());
+            List<XEwsDelegate> delegates = this.GetDelegate();
 
             WriteObject(delegates, true);
         }

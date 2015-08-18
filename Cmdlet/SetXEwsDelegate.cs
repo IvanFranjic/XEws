@@ -10,7 +10,7 @@ namespace XEws.Cmdlet
     {
         protected override void ProcessRecord()
         {
-            XEwsDelegate ewsDelegate = this.GetDelegate(this.DelegateEmailAddress, this.GetSessionVariable());
+            XEwsDelegate ewsDelegate = this.GetDelegate(this.DelegateEmailAddress);
 
             ewsDelegate.CalendarFolderPermission = this.CalendarPermission;
             ewsDelegate.InboxFolderPermission = this.InboxPermission;
@@ -19,7 +19,7 @@ namespace XEws.Cmdlet
             ewsDelegate.ViewPrivateItems = this.ViewPrivateItems;
             ewsDelegate.ReceivesCopyOfMeeting = this.ReceiveCopyOfMeetings;
 
-            this.SetDelegate(ewsDelegate, DelegateAction.Update, this.GetSessionVariable());
+            this.SetDelegate(ewsDelegate, DelegateAction.Update);
 
             //DelegateFolderPermissionLevel[] folderPermission = { this.CalendarPermission, this.InboxPermission, this.TaskPermission, this.ContactPermission };
             //XEwsDelegate delegateUser = new XEwsDelegate(this.DelegateEmailAddress, this.ReceiveCopyOfMeetings, this.ViewPrivateItems, folderPermission);

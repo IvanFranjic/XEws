@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Exchange.WebServices.Data;
-using System.Management.Automation;
-
-namespace XEws.CmdletAbstract
+﻿namespace XEws.CmdletAbstract
 {
+    using Microsoft.Exchange.WebServices.Data;
+    using System.Management.Automation;
+
     public class XEwsItemMoveCmdlet : XEwsCmdlet
     {
-        [Parameter(ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public Item Item
         {
             get;
@@ -18,7 +13,7 @@ namespace XEws.CmdletAbstract
         }
 
         internal Folder destinationFolder;
-        [Parameter()]
+        [Parameter(Mandatory = true, Position = 1)]
         public Folder DestinationFolder
         {
             get
@@ -33,6 +28,12 @@ namespace XEws.CmdletAbstract
 
         #region Methods
 
+        /// <summary>
+        /// Method is moving item from one to another folder.
+        /// </summary>
+        /// <param name="item">Item to move.</param>
+        /// <param name="destinationFolder">Destination folder.</param>
+        /// <param name="moveOperation">Move operation (Copy or Move).</param>
         internal void MoveItem(Item item, Folder destinationFolder, MoveOperation moveOperation)
         {
             //Item itemToMove = Item.Bind(ewsSession, item.Id);
@@ -53,6 +54,9 @@ namespace XEws.CmdletAbstract
 
         #region Enums
 
+        /// <summary>
+        /// List of allowed move operation.
+        /// </summary>
         public enum MoveOperation
         {
             Copy,

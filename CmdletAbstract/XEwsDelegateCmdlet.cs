@@ -9,7 +9,7 @@ namespace XEws.CmdletAbstract
     public abstract class XEwsDelegateCmdlet : XEwsCmdlet
     {
         private string delegateEmailAddress = String.Empty;
-        [Parameter()]
+        [Parameter(Mandatory = true, Position = 0)]
         public string DelegateEmailAddress
         {
             get
@@ -23,7 +23,7 @@ namespace XEws.CmdletAbstract
         }
 
         private bool viewPrivateItems = false;
-        [Parameter()]
+        [Parameter(Mandatory = false, Position = 1)]
         public bool ViewPrivateItems
         {
             get
@@ -37,7 +37,7 @@ namespace XEws.CmdletAbstract
         }
 
         private bool receiveCopyOfMeetings = false;
-        [Parameter()]
+        [Parameter(Mandatory = false, Position = 2)]
         public bool ReceiveCopyOfMeetings
         {
             get
@@ -51,7 +51,7 @@ namespace XEws.CmdletAbstract
         }
 
         private DelegateFolderPermissionLevel calendarPermission = DelegateFolderPermissionLevel.None;
-        [Parameter()]
+        [Parameter(Mandatory = false, Position = 3)]
         public DelegateFolderPermissionLevel CalendarPermission
         {
             get
@@ -65,7 +65,7 @@ namespace XEws.CmdletAbstract
         }
 
         private DelegateFolderPermissionLevel inboxPermission = DelegateFolderPermissionLevel.None;
-        [Parameter()]
+        [Parameter(Mandatory = false, Position = 4)]
         public DelegateFolderPermissionLevel InboxPermission
         {
             get
@@ -79,7 +79,7 @@ namespace XEws.CmdletAbstract
         }
 
         private DelegateFolderPermissionLevel taskPermission = DelegateFolderPermissionLevel.None;
-        [Parameter()]
+        [Parameter(Mandatory = false, Position = 5)]
         public DelegateFolderPermissionLevel TaskPermission
         {
             get
@@ -93,7 +93,7 @@ namespace XEws.CmdletAbstract
         }
 
         private DelegateFolderPermissionLevel contactPermission = DelegateFolderPermissionLevel.None;
-        [Parameter()]
+        [Parameter(Mandatory = false, Position = 6)]
         public DelegateFolderPermissionLevel ContactPermission
         {
             get
@@ -106,8 +106,14 @@ namespace XEws.CmdletAbstract
             }
         }
 
-        internal List<XEwsDelegate> GetDelegate(ExchangeService ewsSession)
+        /// <summary>
+        /// Methods is returning all delegate associated with currently binded user.
+        /// </summary>
+        /// <returns>List of delegates</returns>
+        internal List<XEwsDelegate> GetDelegate()
         {
+            ExchangeService ewsSession = this.GetSessionVariable();
+
             List<XEwsDelegate> xewsDelegate = new List<XEwsDelegate>();
             string currentBindedMailbox = this.GetBindedMailbox();
             
@@ -126,11 +132,18 @@ namespace XEws.CmdletAbstract
             return xewsDelegate;            
         }
 
-        internal XEwsDelegate GetDelegate(string delegateEmailAddress, ExchangeService ewsSession)
+        /// <summary>
+        /// Method is returning requested delegate.
+        /// </summary>
+        /// <param name="delegateEmailAddress"></param>
+        /// <returns></returns>
+        internal XEwsDelegate GetDelegate(string delegateEmailAddress)
         {
+            ExchangeService ewsSession = this.GetSessionVariable();
+
             ValidateEmailAddress(delegateEmailAddress);
 
-            List<XEwsDelegate> ewsDelegates = this.GetDelegate(ewsSession);
+            List<XEwsDelegate> ewsDelegates = this.GetDelegate();
 
             foreach (XEwsDelegate ewsDelegate in ewsDelegates)
             {
@@ -143,8 +156,15 @@ namespace XEws.CmdletAbstract
             throw new InvalidOperationException("No delegate found with email address: " + delegateEmailAddress);
         }
 
-        internal void SetDelegate(XEwsDelegate xewsDelegate, DelegateAction delegateAction, ExchangeService ewsSession)
+        /// <summary>
+        /// Method is used for setting, updating and deleting delegate.
+        /// </summary>
+        /// <param name="xewsDelegate">Delegate object for manipulation.</param>
+        /// <param name="delegateAction">Action on delegate (Add, Update, Delete).</param>
+        internal void SetDelegate(XEwsDelegate xewsDelegate, DelegateAction delegateAction)
         {
+            ExchangeService ewsSession = this.GetSessionVariable();
+
             this.ValidateEmailAddress(xewsDelegate.DelegateUserId);
             string currentBindedMailbox = this.GetBindedMailbox();
 
@@ -173,6 +193,9 @@ namespace XEws.CmdletAbstract
             }
         }
 
+        /// <summary>
+        /// List of allowed delegate actions.
+        /// </summary>
         internal enum DelegateAction
         {
             Update,

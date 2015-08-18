@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-
-namespace XEws.CmdletAbstract
+﻿namespace XEws.CmdletAbstract
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+
     /// <summary>
     /// Represent abstract class for cmdlets Get-XEwsFolder*
     /// </summary>
@@ -57,7 +57,6 @@ namespace XEws.CmdletAbstract
         /// </summary>
         /// <param name="searchRoot">Folder from where search should begin.</param>
         /// <param name="folderName">Name of the folder to search.</param>
-        /// <param name="ewsSession">ExchangeService session context.</param>
         /// <returns></returns>
         internal Folder GetFolder(Folder searchRoot, string folderName)
         {
@@ -78,7 +77,6 @@ namespace XEws.CmdletAbstract
         /// Method is returning List of the Folder object under search root.
         /// </summary>
         /// <param name="searchRoot">Folder from where search should begin.</param>
-        /// <param name="ewsSession">ExchangeService session context.</param>
         /// <returns></returns>
         internal List<Folder> GetFolder(Folder searchRoot)
         {
@@ -112,7 +110,6 @@ namespace XEws.CmdletAbstract
         /// </summary>
         /// <param name="folderName">Name of the folder to create.</param>
         /// <param name="folderRoot">Root folder under which new folder will be created.</param>
-        /// <param name="ewsSession">ExchangeService session context.</param>
         internal void AddFolder(string folderName, Folder folderRoot)
         {
             ExchangeService ewsSession = this.GetSessionVariable();
@@ -159,6 +156,11 @@ namespace XEws.CmdletAbstract
             folder.Delete(deleteMode);
         }
 
+        /// <summary>
+        /// Method is moving folder to another location.
+        /// </summary>
+        /// <param name="folderToMove">Folder which will be moved.</param>
+        /// <param name="destinationFolder">New destination.</param>
         internal void MoveFolder(Folder folderToMove, Folder destinationFolder)
         {
             // No need to check if folder to move is WellKnownFolder since those cannot be moved anyway.

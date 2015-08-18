@@ -1,9 +1,9 @@
-﻿using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using XEws.CmdletAbstract;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using XEws.CmdletAbstract;
+
     [Cmdlet(VerbsCommon.Copy, "XEwsItem")]
     public class CopyXEwsItem : XEwsItemMoveCmdlet
     {

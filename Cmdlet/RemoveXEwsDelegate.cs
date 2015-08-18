@@ -13,7 +13,7 @@ namespace XEws.Cmdlet
         {
             XEwsDelegate xewsDelegate = new XEwsDelegate(this.DelegateEmailAddress);
 
-            this.SetDelegate(xewsDelegate, DelegateAction.Delete, this.GetSessionVariable());
+            this.SetDelegate(xewsDelegate, DelegateAction.Delete);
         }
 
         #region Delegate Override parameters

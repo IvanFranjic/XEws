@@ -13,7 +13,7 @@ namespace XEws.Cmdlet
             DelegateFolderPermissionLevel[] folderPermission = { this.CalendarPermission, this.InboxPermission, this.TaskPermission, this.ContactPermission };
             XEwsDelegate delegateUser = new XEwsDelegate(this.DelegateEmailAddress, this.ReceiveCopyOfMeetings, this.ViewPrivateItems, folderPermission);
             
-            this.SetDelegate(delegateUser, DelegateAction.Add,this.GetSessionVariable());
+            this.SetDelegate(delegateUser, DelegateAction.Add);
         }
     }
 }

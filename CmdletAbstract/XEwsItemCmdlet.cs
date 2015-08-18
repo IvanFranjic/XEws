@@ -11,7 +11,7 @@ namespace XEws.CmdletAbstract
 {
     public abstract class XEwsItemCmdlet : XEwsCmdlet
     {
-        [Parameter()]
+        [Parameter(Position = 0)]
         public Folder Folder
         {
             get;
@@ -28,16 +28,6 @@ namespace XEws.CmdletAbstract
 
         internal List<Item> GetItem(Folder folder, ItemView iView, DateTime startDate, DateTime endDate)
         {
-            //SearchFilter searchFilter = new SearchFilter.SearchFilterCollection(
-            //    LogicalOperator.And,
-            //    new SearchFilter.IsGreaterThanOrEqualTo(ItemSchema.DateTimeReceived, startDate),
-            //    new SearchFilter.IsLessThanOrEqualTo(ItemSchema.DateTimeReceived, endDate)
-            //    );
-
-            //FindItemsResults<Item> findResult = folder.FindItems(searchFilter, iView);
-
-            //return this.GetListItem(findResult);
-
             return this.GetItem(folder, iView, startDate, endDate, String.Empty);
         }
 
