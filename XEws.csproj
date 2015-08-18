@@ -68,6 +68,7 @@
     <Compile Include="Cmdlet\GetXEwsSession.cs" />
     <Compile Include="Cmdlet\GetXEwsWellKnownFolder.cs" />
     <Compile Include="Cmdlet\ImportXEwsSession.cs" />
+    <Compile Include="Cmdlet\MoveXEwsFolder.cs" />
     <Compile Include="Cmdlet\MoveXEwsItem.cs" />
     <Compile Include="Cmdlet\RemoveXEwsDelegate.cs" />
     <Compile Include="Cmdlet\RemoveXEwsFolder.cs" />

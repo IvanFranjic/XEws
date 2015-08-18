@@ -58,8 +58,10 @@ namespace XEws.CmdletAbstract
         /// <param name="folderName">Name of the folder to search.</param>
         /// <param name="ewsSession">ExchangeService session context.</param>
         /// <returns></returns>
-        internal Folder GetFolder(Folder searchRoot, string folderName, ExchangeService ewsSession)
+        internal Folder GetFolder(Folder searchRoot, string folderName)
         {
+            ExchangeService ewsSession = this.GetSessionVariable();
+
             List<Folder> folders = GetFolder(searchRoot, ewsSession);
 
             foreach (Folder folder in folders)
@@ -150,6 +152,22 @@ namespace XEws.CmdletAbstract
         private void RemoveFolder(Folder folder, DeleteMode deleteMode)
         {
             folder.Delete(deleteMode);
+        }
+
+        internal void MoveFolder(Folder folderToMove, Folder destinationFolder)
+        {
+            foreach(WellKnownFolderName knownFolder in Enum.GetValues(typeof(WellKnownFolderName)))
+            {
+                if (knownFolder.ToString() == folderToMove.DisplayName)
+                    throw new InvalidOperationException(String.Format("Could not move well known folder '{0}'", knownFolder.ToString()));
+            }
+
+            Folder checkFolderToMove = this.GetFolder(destinationFolder, folderToMove.DisplayName);
+
+            if (checkFolderToMove != null)
+                throw new InvalidOperationException(String.Format("Folder '{0}' already exist under '{1}'.", folderToMove.DisplayName, destinationFolder.DisplayName));
+
+            folderToMove.Move(destinationFolder.Id);
         }
 
         #endregion

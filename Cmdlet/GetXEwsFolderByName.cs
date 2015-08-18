@@ -54,7 +54,7 @@ namespace XEws.Cmdlet
 
             else
             {
-                folder = this.GetFolder(this.FolderRoot, this.FolderName, this.GetSessionVariable());                
+                folder = this.GetFolder(this.FolderRoot, this.FolderName);                
             }
 
             if (folder == null)

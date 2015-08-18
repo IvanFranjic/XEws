@@ -1,0 +1,11 @@
+C:\Users\ifranjic\Documents\Git\XEws\obj\Debug\XEws.csprojResolveAssemblyReference.cache
+C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\en-US\XEws.dll-Help.xml
+C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\en-US\XEws.Help.pshproj
+C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\XEws.format.ps1xml
+C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\XEws.psd1
+C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\XEws.dll
+C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\XEws.pdb
+C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\Microsoft.Exchange.WebServices.dll
+C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\Microsoft.Exchange.WebServices.xml
+C:\Users\ifranjic\Documents\Git\XEws\obj\Debug\XEws.dll
+C:\Users\ifranjic\Documents\Git\XEws\obj\Debug\XEws.pdb

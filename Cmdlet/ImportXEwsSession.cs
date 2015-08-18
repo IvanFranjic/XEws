@@ -14,6 +14,8 @@ namespace XEws.Cmdlet
         protected override void ProcessRecord()
         {
             this.SetSessionVariable(this.UserName, this.Password, this.EwsUri, this.ImpersonationEmail, this.TraceEnabled, this.TraceOutputFolder, this.TraceFlags);
+
+            WriteVerbose(String.Format("Using following Ews endpoint: {0}", this.GetSessionVariable().Url.ToString()));
         }
     }
 }

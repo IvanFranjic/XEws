@@ -5,8 +5,8 @@ using System.Management.Automation;
 
 namespace XEws.Cmdlet
 {
-    [Cmdlet(VerbsCommon.Remove, "XEwsFolder")]
-    public class RemoveXEwsFolder : XEwsFolderCmdlet
+    [Cmdlet(VerbsCommon.Move, "XEwsFolder")]
+    public class MoveXEwsFolder : XEwsFolderCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public Folder Folder
@@ -15,15 +15,8 @@ namespace XEws.Cmdlet
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 1)]
-        public DeleteMode DeleteMode
-        {
-            get;
-            set;
-        }
-
-        [Parameter(Mandatory = false, Position = 2)]
-        public SwitchParameter Force
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        public Folder DestinationFolder
         {
             get;
             set;
@@ -33,15 +26,14 @@ namespace XEws.Cmdlet
         {
             try
             {
-                this.RemoveFolder(this.Folder, this.DeleteMode, this.Force);
-                WriteVerbose(String.Format("Successfuly removed folder {0}.", this.Folder.DisplayName));
+                this.MoveFolder(this.Folder, this.DestinationFolder);
+                WriteVerbose(String.Format("Folder '{0}' moved to '{1}'.", this.Folder.DisplayName, this.DestinationFolder.DisplayName));
             }
-            catch (Exception e)
+            catch
             {
-                throw new Exception(e.Message);
-            }
+                throw;
+            }            
         }
-
 
         #region Base properties overrides
         new private Folder FolderRoot
