@@ -36,7 +36,7 @@ namespace XEws.Cmdlet
                 WriteWarning("Use 'Recurse' switch with a caution. If more than one folder with the same name is found, last one will be returned which can lead to undesired behaviour.");
 
                 List<Folder> folders = new List<Folder>();
-                GetRecurseFolder(this.FolderRoot, ref folders, this.GetSessionVariable());
+                GetRecurseFolder(this.FolderRoot, ref folders);
                 
                 foreach (Folder recurseFolder in folders)
                 {

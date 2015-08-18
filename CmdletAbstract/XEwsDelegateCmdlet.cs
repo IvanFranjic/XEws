@@ -128,7 +128,7 @@ namespace XEws.CmdletAbstract
 
         internal XEwsDelegate GetDelegate(string delegateEmailAddress, ExchangeService ewsSession)
         {
-            ValidateUserName(delegateEmailAddress);
+            ValidateEmailAddress(delegateEmailAddress);
 
             List<XEwsDelegate> ewsDelegates = this.GetDelegate(ewsSession);
 
@@ -145,7 +145,7 @@ namespace XEws.CmdletAbstract
 
         internal void SetDelegate(XEwsDelegate xewsDelegate, DelegateAction delegateAction, ExchangeService ewsSession)
         {
-            this.ValidateUserName(xewsDelegate.DelegateUserId);
+            this.ValidateEmailAddress(xewsDelegate.DelegateUserId);
             string currentBindedMailbox = this.GetBindedMailbox();
 
             DelegateUser delegateUser = new DelegateUser(xewsDelegate.DelegateUserId);

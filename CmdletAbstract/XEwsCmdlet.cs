@@ -1,13 +1,16 @@
-﻿using System;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using Microsoft.Exchange.WebServices.Autodiscover;
-using System.Net;
-using XEws.Tracer;
-using System.Security;
-
-namespace XEws.CmdletAbstract
+﻿namespace XEws.CmdletAbstract
 {
+    using System;
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using Microsoft.Exchange.WebServices.Autodiscover;
+    using System.Net;
+    using System.Net.Mail;
+    using XEws.Tracer;
+    using System.Security;
+    using System.Text.RegularExpressions;
+
+
     /*
 
         Class should be used as starting point to build
@@ -16,6 +19,7 @@ namespace XEws.CmdletAbstract
         should be created which interits from this one.
 
     */
+
     public abstract class XEwsCmdlet : PSCmdlet
     {
         #region Properties
@@ -54,22 +58,60 @@ namespace XEws.CmdletAbstract
         /// <param name="userName">Username of the user connecting to the Ews. It should be in email address format (UPN).</param>
         /// <param name="password">Password of the user connecting to the Ews.</param>
         /// <param name="ewsUrl">Ews url. It usualy looks like https://host.domain.com/EWS/Exchange.asmx</param>
-        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl)
+        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl, string autodiscoverEmail)
         {
-            ValidateUserName(userName);
+            NetworkCredential credentials = new NetworkCredential(userName, password);
+
+            this.SetSessionVariable(credentials, autodiscoverEmail, ewsUrl);
+
+            /* 
+            ---------------------------- Delete after testing ----------------------------
+
+            UserNameFormat userNameFormat;
+            ValidateUserName(userName, out userNameFormat);
+
+            // Throw error if samAccountName is used and no ewsUrl is specified.
+            if (ewsUrl == null && userNameFormat == UserNameFormat.SamAccountName)
+                throw new InvalidOperationException(String.Format("Autodiscover could not detect Ews endpoint with specified user id: '{0}'. Please specify Ews endpoint manually.", userName));
 
             ExchangeService ewsService = new ExchangeService();
-            NetworkCredential credentials = new NetworkCredential(userName, password);
+            
             ewsService.Credentials = credentials;
 
-            if (ewsUrl == null)
+            if (ewsUrl == null && userNameFormat == UserNameFormat.EmailAddress)
                 ewsService.AutodiscoverUrl(userName, RedirectionUrlValidationCallback);
 
             else
                 ewsService.Url = ewsUrl;
 
             this.SessionState.PSVariable.Set("EwsSession", ewsService);
+
+            ---------------------------- Delete after testing ----------------------------
+            */
         }
+
+        #region -------------- Test method --------------
+
+        private void SetSessionVariable(NetworkCredential networkCredentials, string autodiscoverEmail, Uri ewsUrl)
+        {
+            ExchangeService ewsService = new ExchangeService();
+            NetworkCredential credentials = networkCredentials;
+            ewsService.Credentials = credentials;
+
+            if (!String.IsNullOrEmpty(autodiscoverEmail))
+            {
+                this.ValidateEmailAddress(autodiscoverEmail);
+                ewsService.AutodiscoverUrl(autodiscoverEmail, RedirectionUrlValidationCallback);
+            }                
+            else if (ewsUrl != null)
+                ewsService.Url = ewsUrl;
+            else
+                throw new InvalidOperationException("Please specify autodiscover e-mail or Ews endpoint.");
+
+            this.SessionState.PSVariable.Set("EwsSession", ewsService);
+        }
+
+        #endregion
 
         /// <summary>
         /// Method for setting $EwsSession session context variable.
@@ -81,9 +123,9 @@ namespace XEws.CmdletAbstract
         /// <param name="traceEnabled">Enable ews tracing.</param>
         /// <param name="traceFolder">Location where trace items will be saved.</param>
         /// <param name="traceFlags">Options what to trace.</param>
-        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl, string impersonateEmail, bool traceEnabled, string traceFolder, TraceFlags traceFlags)
+        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl, string autodicoverEmail, string impersonateEmail, bool traceEnabled, string traceFolder, TraceFlags traceFlags)
         {
-            this.SetSessionVariable(userName, password, ewsUrl);
+            this.SetSessionVariable(userName, password, ewsUrl, autodicoverEmail);
             this.SetSessionVariable(impersonateEmail, traceEnabled, traceFolder, traceFlags);
         }
 
@@ -127,7 +169,7 @@ namespace XEws.CmdletAbstract
                 return;
             }
 
-            ValidateUserName(impersonateEmail);
+            ValidateEmailAddress(impersonateEmail);
 
             if (!String.IsNullOrEmpty(impersonateEmail))
                 ewsService.ImpersonatedUserId = new ImpersonatedUserId(ConnectingIdType.SmtpAddress, impersonateEmail);
@@ -138,15 +180,38 @@ namespace XEws.CmdletAbstract
         /// Helper method for validating if the username is in correct UPN format.
         /// </summary>
         /// <param name="userName">username to check.</param>
-        internal void ValidateUserName(string userName)
+        internal void ValidateUserName(string userName, out UserNameFormat userNameFormat)
         {
             try
             {
-                EmailAddress upnTest = new EmailAddress(userName);
+                ValidateEmailAddress(userName);
+                userNameFormat = UserNameFormat.EmailAddress;
             }
             catch
             {
-                throw new InvalidOperationException("Impersonate email is not in correct format.Please use user@domain.com format.");
+                Regex samAccountNameRegex = new Regex(".+\\\\.+");
+                Match samAccountMatch = samAccountNameRegex.Match(userName);
+
+                if (samAccountMatch.Success)
+                    userNameFormat = UserNameFormat.SamAccountName;
+                else
+                    throw new InvalidOperationException(String.Format("Provided username '{0}' is not in correct format. Please use one of the following format: 'domain\\username' or 'username@domain.com'", userName));
+            }
+        }
+
+        /// <summary>
+        /// Helper method for validating if the impersonate email is in correct format.
+        /// </summary>
+        /// <param name="emailAddress">string to check</param>
+        internal void ValidateEmailAddress(string emailAddress)
+        {
+            try
+            {
+                 MailAddress emailAddressCheck = new MailAddress(emailAddress);
+            }
+            catch
+            {
+                throw new InvalidOperationException(String.Format("Specified data is not valid email address: {0}", emailAddress));
             }
         }
 
@@ -193,6 +258,15 @@ namespace XEws.CmdletAbstract
         internal static bool RedirectionUrlValidationCallback(String redirectionUrl)
         {
             return redirectionUrl.ToLower().StartsWith("https://");
+        }
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        internal enum UserNameFormat
+        {
+            EmailAddress,
+            SamAccountName
         }
 
         #endregion

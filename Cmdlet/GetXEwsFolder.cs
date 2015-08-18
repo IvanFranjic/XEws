@@ -27,7 +27,7 @@ namespace XEws.Cmdlet
 
             if (this.Recurse)
             {
-                this.GetRecurseFolder(this.FolderRoot, ref folders, this.GetSessionVariable());
+                this.GetRecurseFolder(this.FolderRoot, ref folders);
             }
 
             /*
@@ -36,7 +36,7 @@ namespace XEws.Cmdlet
 
             else
             {
-                folders = this.GetFolder(this.FolderRoot, this.GetSessionVariable());
+                folders = this.GetFolder(this.FolderRoot);
             }
 
             WriteObject(folders, true);

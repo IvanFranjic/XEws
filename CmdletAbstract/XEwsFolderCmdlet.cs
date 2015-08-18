@@ -36,9 +36,10 @@ namespace XEws.CmdletAbstract
         /// </summary>
         /// <param name="searchRoot">Root of the search.</param>
         /// <param name="foundFolders">Reference variable where result will be returned.</param>
-        /// <param name="ewsSession">ExchangeService session context.</param>
-        internal void GetRecurseFolder(Folder searchRoot, ref List<Folder> foundFolders, ExchangeService ewsSession)
+        internal void GetRecurseFolder(Folder searchRoot, ref List<Folder> foundFolders)
         {
+            ExchangeService ewsSession = this.GetSessionVariable();
+
             if (searchRoot.ChildFolderCount == 0)
                 return;
 
@@ -46,7 +47,7 @@ namespace XEws.CmdletAbstract
 
             foreach (Folder folder in foundFolderResult)
             {
-                GetRecurseFolder(folder, ref foundFolders, ewsSession);
+                GetRecurseFolder(folder, ref foundFolders);
                 foundFolders.Add(folder);
             }
         }
@@ -62,7 +63,7 @@ namespace XEws.CmdletAbstract
         {
             ExchangeService ewsSession = this.GetSessionVariable();
 
-            List<Folder> folders = GetFolder(searchRoot, ewsSession);
+            List<Folder> folders = GetFolder(searchRoot);
 
             foreach (Folder folder in folders)
             {
@@ -79,8 +80,10 @@ namespace XEws.CmdletAbstract
         /// <param name="searchRoot">Folder from where search should begin.</param>
         /// <param name="ewsSession">ExchangeService session context.</param>
         /// <returns></returns>
-        internal List<Folder> GetFolder(Folder searchRoot, ExchangeService ewsSession)
+        internal List<Folder> GetFolder(Folder searchRoot)
         {
+            ExchangeService ewsSession = this.GetSessionVariable();
+
             List<Folder> folders = new List<Folder>();
             FindFoldersResults findResult = ewsSession.FindFolders(searchRoot.Id, new FolderView(100));
 
@@ -110,8 +113,10 @@ namespace XEws.CmdletAbstract
         /// <param name="folderName">Name of the folder to create.</param>
         /// <param name="folderRoot">Root folder under which new folder will be created.</param>
         /// <param name="ewsSession">ExchangeService session context.</param>
-        internal void AddFolder(string folderName, Folder folderRoot, ExchangeService ewsSession)
+        internal void AddFolder(string folderName, Folder folderRoot)
         {
+            ExchangeService ewsSession = this.GetSessionVariable();
+
             Folder folder = new Folder(ewsSession);
             folder.DisplayName = folderName;
             folder.FolderClass = "IPF.Note";

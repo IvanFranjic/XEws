@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using XEws.CmdletAbstract;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System;
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using XEws.CmdletAbstract;
+
     [Cmdlet(VerbsCommon.Add, "XEwsFolder")]
     public class AddXEwsFolder : XEwsFolderCmdlet
     {
@@ -27,7 +23,7 @@ namespace XEws.Cmdlet
 
             try
             {
-                this.AddFolder(this.FolderName, this.FolderRoot, this.GetSessionVariable());
+                this.AddFolder(this.FolderName, this.FolderRoot);
                 WriteVerbose(String.Format("Successfully created folder '{0}' under '{1}'.", this.FolderName, this.FolderRoot.DisplayName));
             }
             catch (Exception)
