@@ -53,7 +53,7 @@
         }
 
         /// <summary>
-        /// Sets powershell session $EwsSession variable with ExchangeService object.
+        ///  powershell session $EwsSession variable with ExchangeService object.
         /// </summary>
         /// <param name="userName">Username of the user connecting to the Ews. It should be in email address format (UPN).</param>
         /// <param name="password">Password of the user connecting to the Ews.</param>
@@ -90,13 +90,10 @@
             */
         }
 
-        #region -------------- Test method --------------
-
         private void SetSessionVariable(NetworkCredential networkCredentials, string autodiscoverEmail, Uri ewsUrl)
         {
             ExchangeService ewsService = new ExchangeService();
-            NetworkCredential credentials = networkCredentials;
-            ewsService.Credentials = credentials;
+            ewsService.Credentials = networkCredentials;
 
             if (!String.IsNullOrEmpty(autodiscoverEmail))
             {
@@ -110,8 +107,7 @@
 
             this.SessionState.PSVariable.Set("EwsSession", ewsService);
         }
-
-        #endregion
+        
 
         /// <summary>
         /// Method for setting $EwsSession session context variable.
