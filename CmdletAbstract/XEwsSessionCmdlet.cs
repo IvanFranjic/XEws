@@ -22,11 +22,18 @@ namespace XEws.CmdletAbstract
             set;
         }
 
+        private Uri ewsUri = null;
         [Parameter()]
         public Uri EwsUri
         {
-            get;
-            set;
+            get
+            {
+                return ewsUri;
+            }
+            set
+            {
+                ewsUri = value;
+            }
         }
 
         [Parameter()]

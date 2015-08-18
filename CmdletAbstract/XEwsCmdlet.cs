@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Management.Automation;
 using Microsoft.Exchange.WebServices.Data;
+using Microsoft.Exchange.WebServices.Autodiscover;
 using System.Net;
 using XEws.Tracer;
 using System.Security;
@@ -59,10 +60,14 @@ namespace XEws.CmdletAbstract
 
             ExchangeService ewsService = new ExchangeService();
             NetworkCredential credentials = new NetworkCredential(userName, password);
-
-            ewsService.Url = ewsUrl;
             ewsService.Credentials = credentials;
-            
+
+            if (ewsUrl == null)
+                ewsService.AutodiscoverUrl(userName, RedirectionUrlValidationCallback);
+
+            else
+                ewsService.Url = ewsUrl;
+
             this.SessionState.PSVariable.Set("EwsSession", ewsService);
         }
 
@@ -143,6 +148,51 @@ namespace XEws.CmdletAbstract
             {
                 throw new InvalidOperationException("Impersonate email is not in correct format.Please use user@domain.com format.");
             }
+        }
+
+        /// <summary>
+        /// Method is creating temporary post item and deletes it as soon as creator address is extracted.
+        /// </summary>
+        /// <returns></returns>
+        internal string GetCurrentUser()
+        {
+            PostItem postItem = new PostItem(this.GetSessionVariable());
+            postItem.Body = new MessageBody("Ews temp post item");
+            postItem.Save();
+
+            PostItem tempPostItem = PostItem.Bind(this.GetSessionVariable(), postItem.Id);
+            string from = tempPostItem.From.Address.ToString();
+
+            postItem = null;
+            tempPostItem.Delete(DeleteMode.HardDelete);
+
+            return from.ToLower();
+        }
+
+        /// <summary>
+        /// Method is returning email address of currently binded user.
+        /// </summary>
+        /// <returns></returns>
+        internal string GetBindedMailbox()
+        {
+            string currentMbx = String.Empty;
+
+            if (this.GetSessionVariable().ImpersonatedUserId == null)
+                currentMbx = this.GetCurrentUser();
+            else
+                currentMbx = this.GetSessionVariable().ImpersonatedUserId.Id.ToString().ToLower();
+
+            return currentMbx;
+        }
+
+        /// <summary>
+        /// Method invoked by AutodiscoverRedirectionUrlValidationCallback delegate while importing session.
+        /// </summary>
+        /// <param name="redirectionUrl">Redirection url passed by delegate.</param>
+        /// <returns></returns>
+        internal static bool RedirectionUrlValidationCallback(String redirectionUrl)
+        {
+            return redirectionUrl.ToLower().StartsWith("https://");
         }
 
         #endregion

@@ -109,8 +109,9 @@ namespace XEws.CmdletAbstract
         internal List<XEwsDelegate> GetDelegate(ExchangeService ewsSession)
         {
             List<XEwsDelegate> xewsDelegate = new List<XEwsDelegate>();
-
-            Mailbox currentMailbox = new Mailbox(ewsSession.ImpersonatedUserId.Id);
+            string currentBindedMailbox = this.GetBindedMailbox();
+            
+            Mailbox currentMailbox = new Mailbox(currentBindedMailbox);
 
             DelegateInformation xewsDelegateInformation = ewsSession.GetDelegates(currentMailbox, true);
 
@@ -144,10 +145,11 @@ namespace XEws.CmdletAbstract
 
         internal void SetDelegate(XEwsDelegate xewsDelegate, DelegateAction delegateAction, ExchangeService ewsSession)
         {
-            ValidateUserName(xewsDelegate.DelegateUserId);
+            this.ValidateUserName(xewsDelegate.DelegateUserId);
+            string currentBindedMailbox = this.GetBindedMailbox();
 
             DelegateUser delegateUser = new DelegateUser(xewsDelegate.DelegateUserId);
-            Mailbox currentMailbox = new Mailbox(ewsSession.ImpersonatedUserId.Id);
+            Mailbox currentMailbox = new Mailbox(currentBindedMailbox);
 
             delegateUser.ReceiveCopiesOfMeetingMessages = xewsDelegate.ReceivesCopyOfMeeting;
             delegateUser.Permissions.CalendarFolderPermissionLevel = xewsDelegate.CalendarFolderPermission;
@@ -165,7 +167,8 @@ namespace XEws.CmdletAbstract
                     ewsSession.AddDelegates(currentMailbox, MeetingRequestsDeliveryScope.DelegatesAndMe, delegateUser);
                     break;
 
-                default:
+                case DelegateAction.Delete:
+                    ewsSession.RemoveDelegates(currentMailbox, delegateUser.UserId);
                     break;
             }
         }
@@ -173,7 +176,8 @@ namespace XEws.CmdletAbstract
         internal enum DelegateAction
         {
             Update,
-            Add
+            Add,
+            Delete
         }
 
         public sealed class XEwsDelegate
@@ -198,6 +202,11 @@ namespace XEws.CmdletAbstract
                 this.InboxFolderPermission = delegatePermissionLevel[1];
                 this.TaskFolderPermission = delegatePermissionLevel[2];
                 this.ContactFolderPermission = delegatePermissionLevel[3];
+            }
+
+            public XEwsDelegate(string delegateEmailAddress)
+            {
+                this.DelegateUserId = delegateEmailAddress;
             }
 
 
