@@ -38,6 +38,12 @@ namespace XEws.Cmdlet
             set;
         }
 
+        new private string AutodiscoverEmail
+        {
+            get;
+            set;
+        }
+
         #endregion
     }
 }

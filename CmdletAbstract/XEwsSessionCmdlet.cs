@@ -8,22 +8,22 @@ namespace XEws.CmdletAbstract
 {
     public abstract class XEwsSessionCmdlet : XEwsCmdlet
     {
-        [Parameter()]
-        public string UserName
+        private string autodiscoverEmail = null;
+        [Parameter(Position = 0, ParameterSetName = "Autodiscover")]
+        public string AutodiscoverEmail
         {
-            get;
-            set;
-        }
-
-        [Parameter()]
-        public SecureString Password
-        {
-            get;
-            set;
+            get
+            {
+                return autodiscoverEmail;
+            }
+            set
+            {
+                autodiscoverEmail = value;
+            }
         }
 
         private Uri ewsUri = null;
-        [Parameter()]
+        [Parameter(Position = 0, ParameterSetName = "ManualUrl")]
         public Uri EwsUri
         {
             get
@@ -36,7 +36,21 @@ namespace XEws.CmdletAbstract
             }
         }
 
-        [Parameter()]
+        [Parameter(Position = 1, Mandatory = true)]
+        public string UserName
+        {
+            get;
+            set;
+        }
+
+        [Parameter(Position = 2, Mandatory = true)]
+        public SecureString Password
+        {
+            get;
+            set;
+        }
+        
+        [Parameter(Position = 3, Mandatory = false)]
         public string ImpersonationEmail
         {
             get;
@@ -44,7 +58,7 @@ namespace XEws.CmdletAbstract
         }
 
         internal bool traceEnabled = false;
-        [Parameter()]
+        [Parameter(Position = 4, Mandatory = false)]
         public bool TraceEnabled
         {
             get
@@ -58,7 +72,7 @@ namespace XEws.CmdletAbstract
         }
 
         internal string traceOutputFolder = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        [Parameter()]
+        [Parameter(Position = 5, Mandatory = false)]
         public string TraceOutputFolder
         {
             get
@@ -72,7 +86,7 @@ namespace XEws.CmdletAbstract
         }
 
         internal TraceFlags traceFlags = TraceFlags.EwsResponse;
-        [Parameter()]
+        [Parameter(Position = 6, Mandatory = false)]
         public TraceFlags TraceFlags
         {
             get
