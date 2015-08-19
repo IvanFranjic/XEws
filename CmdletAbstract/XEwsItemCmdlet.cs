@@ -39,7 +39,7 @@ namespace XEws.CmdletAbstract
 
             if (!String.IsNullOrEmpty(subjectToSearch))
             {
-                searchFilterCollection.Add(new SearchFilter.IsEqualTo(ItemSchema.Subject, subjectToSearch));
+                searchFilterCollection.Add(new SearchFilter.ContainsSubstring(ItemSchema.Subject, subjectToSearch));
             }
 
             SearchFilter searchFilter = searchFilterCollection;
