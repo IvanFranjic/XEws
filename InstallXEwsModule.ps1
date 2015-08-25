@@ -43,7 +43,7 @@
 
         $fileLocation = [String]::Format("{0}\{1}", $moduleHomeFolder, $item);
         $fileData = $webClient.DownloadData($moduleFileLocation);       
-        Set-Content -Value $fileData -Path $fileLocation -Encoding Byte;
+        Set-Content -Value $fileData -Path $fileLocation -Encoding Byte -Force;
     }
 }
 
