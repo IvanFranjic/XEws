@@ -46,3 +46,5 @@
         Set-Content -Value $fileData -Path $fileLocation -Encoding Byte -Force;
     }
 }
+
+Install-XEwsModule -Verbose

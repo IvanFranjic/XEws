@@ -4,9 +4,8 @@ Powershell module leveraging EWS managed api for working with mailboxes.
 
 ### Module installation
 
-```
-Invoke-Expression -Command ((Invoke-WebRequest "https://raw.githubusercontent.com/IvanFranjic/XEws/master/InstallXEwsModule.ps1").Content)
-```
+Download InstallXEwsModule.ps1 script and run it.
+
 
 ### Basic usage
 
