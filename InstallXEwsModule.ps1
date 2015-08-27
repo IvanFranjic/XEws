@@ -1,8 +1,5 @@
 ﻿[CmdletBinding()]
-param
-(
-
-)
+param()
 
 $moduleFiles = @("Microsoft.Exchange.WebServices.dll", "Microsoft.Exchange.WebServices.xml", "XEws.dll", "XEws.format.ps1xml", "XEws.psd1", "en-US/XEws.dll-Help.xml");
 $githubEwsEndpoint = "https://github.com/IvanFranjic/XEws/tree/master/bin/Debug";
