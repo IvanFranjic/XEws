@@ -1,15 +1,12 @@
-﻿function Install-XEwsModule
+function Install-XEwsModule
 {
 
     [CmdletBinding()]
-    param
-    (
-
-    )
+    param()
 
     $moduleFiles = @("Microsoft.Exchange.WebServices.dll", "Microsoft.Exchange.WebServices.xml", "XEws.dll", "XEws.format.ps1xml", "XEws.psd1", "en-US/XEws.dll-Help.xml");
-    $githubEwsEndpoint = "https://github.com/IvanFranjic/XEws/tree/master/bin/Debug";
-    $moduleHomeFolder = [String]::Format("{0}\XEws", $env:PSModulePath.Split(";")[0]);
+    $githubEwsEndpoint = "https://raw.githubusercontent.com/IvanFranjic/XEws/master/bin/Debug/";
+    $moduleHomeFolder = [String]::Format("{0}\XEws", $env:PSModulePath.Split(";") -match $env:USERNAME);
 
     Write-Verbose -Message "Checking if module home folder exist...";
 
