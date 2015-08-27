@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="CmdletAbstract\XEwsCmdlet.cs" />
     <Compile Include="CmdletAbstract\XEwsDelegateCmdlet.cs" />
+    <Compile Include="CmdletAbstract\XEwsExportCmdlet.cs" />
     <Compile Include="CmdletAbstract\XEwsFolderCmdlet.cs" />
     <Compile Include="CmdletAbstract\XEwsItemCmdlet.cs" />
     <Compile Include="CmdletAbstract\XEwsItemMoveCmdlet.cs" />
@@ -61,6 +62,7 @@
     <Compile Include="Cmdlet\AddXEwsDelegate.cs" />
     <Compile Include="Cmdlet\AddXEwsFolder.cs" />
     <Compile Include="Cmdlet\CopyXEwsItem.cs" />
+    <Compile Include="Cmdlet\ExportXEwsItem.cs" />
     <Compile Include="Cmdlet\GetXEwsDelegate.cs" />
     <Compile Include="Cmdlet\GetXEwsFolder.cs" />
     <Compile Include="Cmdlet\GetXEwsFolderByName.cs" />
