@@ -15,7 +15,7 @@
             try
             {
                 this.MoveItem(this.Item, this.DestinationFolder, MoveOperation.Copy);
-                WriteVerbose(string.Format("Copied item '{0}' to folder '{1}'.", this.Item.Subject, this.DestinationFolder.DisplayName));
+                WriteVerbose(string.Format("Item '{0}' copied to folder '{1}'.", this.Item.Subject, this.DestinationFolder.DisplayName));
             }
             catch
             {

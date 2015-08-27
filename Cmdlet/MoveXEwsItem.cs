@@ -21,7 +21,7 @@ namespace XEws.Cmdlet
             try
             {
                 this.MoveItem(this.Item, this.DestinationFolder, MoveOperation.Move);
-                WriteVerbose(string.Format("Moved item '{0}' to folder '{1}'.", this.Item.Subject, this.DestinationFolder.DisplayName));
+                WriteVerbose(string.Format("Item '{0}' moved to folder '{1}'.", this.Item.Subject, this.DestinationFolder.DisplayName));
             }
             catch
             {

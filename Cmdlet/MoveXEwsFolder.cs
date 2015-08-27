@@ -15,7 +15,7 @@ namespace XEws.Cmdlet
             set;
         }
 
-        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
+        [Parameter(Mandatory = true, Position = 1, ValueFromPipeline = true)]
         public Folder DestinationFolder
         {
             get;
