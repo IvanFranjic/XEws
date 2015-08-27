@@ -17,7 +17,7 @@ namespace XEws.Cmdlet
             */
 
             if (this.FolderRoot == null)
-                this.FolderRoot = XEwsFolderCmdlet.GetWellKnownFolder(WellKnownFolderName.Inbox, this.GetSessionVariable());
+                this.FolderRoot = XEwsFolderCmdlet.GetWellKnownFolder(WellKnownFolderName.MsgFolderRoot, this.GetSessionVariable());
 
             List<Folder> folders = new List<Folder>();
 

@@ -1,10 +1,11 @@
-﻿using System;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using XEws.CmdletAbstract;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System;
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using XEws.CmdletAbstract;
+    using System.Collections.Generic;
+
     [Cmdlet(VerbsCommon.Set, "XEwsDelegate")]
     public class SetXEwsDelegate : XEwsDelegateCmdlet
     {
@@ -12,19 +13,37 @@ namespace XEws.Cmdlet
         {
             XEwsDelegate ewsDelegate = this.GetDelegate(this.DelegateEmailAddress);
 
-            ewsDelegate.CalendarFolderPermission = this.CalendarPermission;
-            ewsDelegate.InboxFolderPermission = this.InboxPermission;
-            ewsDelegate.TaskFolderPermission = this.TaskPermission;
-            ewsDelegate.ContactFolderPermission = this.ContactPermission;
-            ewsDelegate.ViewPrivateItems = this.ViewPrivateItems;
-            ewsDelegate.ReceivesCopyOfMeeting = this.ReceiveCopyOfMeetings;
+            foreach (KeyValuePair<string, object> passedParameter in this.MyInvocation.BoundParameters)
+            {
+                switch (passedParameter.Key.ToString())
+                {
+                    case "CalendarPermission":
+                        ewsDelegate.CalendarFolderPermission = this.CalendarPermission;
+                        break;
+
+                    case "InboxPermission":
+                        ewsDelegate.InboxFolderPermission = this.InboxPermission;
+                        break;
+
+                    case "TaskPermission":
+                        ewsDelegate.TaskFolderPermission = this.TaskPermission;
+                        break;
+
+                    case "ContactPermission":
+                        ewsDelegate.ContactFolderPermission = this.ContactPermission;
+                        break;
+
+                    case "ViewPrivateItems":
+                        ewsDelegate.ViewPrivateItems = this.ViewPrivateItems;
+                        break;
+
+                    case "ReceiveCopyOfMeetings":
+                        ewsDelegate.ReceivesCopyOfMeeting = this.ReceiveCopyOfMeetings;
+                        break;
+                }
+            }
 
             this.SetDelegate(ewsDelegate, DelegateAction.Update);
-
-            //DelegateFolderPermissionLevel[] folderPermission = { this.CalendarPermission, this.InboxPermission, this.TaskPermission, this.ContactPermission };
-            //XEwsDelegate delegateUser = new XEwsDelegate(this.DelegateEmailAddress, this.ReceiveCopyOfMeetings, this.ViewPrivateItems, folderPermission);
-
-            //this.AddDelegate(delegateUser, this.GetSessionVariable());
         }
     }
 }
