@@ -74,6 +74,7 @@
     <Compile Include="Cmdlet\RemoveXEwsFolder.cs" />
     <Compile Include="Cmdlet\SetXEwsDelegate.cs" />
     <Compile Include="Cmdlet\SetXEwsSession.cs" />
+    <None Include="InstallXEwsModule.ps1" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tracer\TraceListener.cs" />
   </ItemGroup>
