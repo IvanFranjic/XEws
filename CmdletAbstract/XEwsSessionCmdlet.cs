@@ -99,6 +99,20 @@ namespace XEws.CmdletAbstract
             }
         }
 
+        internal ExchangeVersion exchangeVersion = ExchangeVersion.Exchange2013_SP1;
+        [Parameter(Position = 7, Mandatory = false)]
+        public ExchangeVersion ExchangeVersion
+        {
+            get
+            {
+                return exchangeVersion;
+            }
+            set
+            {
+                exchangeVersion = value;
+            }
+        }
+
         /// <summary>
         /// Method to check if trace path exist.
         /// </summary>

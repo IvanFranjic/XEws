@@ -58,11 +58,11 @@
         /// <param name="userName">Username of the user connecting to the Ews. It should be in email address format (UPN).</param>
         /// <param name="password">Password of the user connecting to the Ews.</param>
         /// <param name="ewsUrl">Ews url. It usualy looks like https://host.domain.com/EWS/Exchange.asmx</param>
-        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl, string autodiscoverEmail)
+        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl, string autodiscoverEmail, ExchangeVersion exchangeVersion)
         {
             NetworkCredential credentials = new NetworkCredential(userName, password);
 
-            this.SetSessionVariable(credentials, autodiscoverEmail, ewsUrl);
+            this.SetSessionVariable(credentials, autodiscoverEmail, ewsUrl, exchangeVersion);
 
             /* 
             ---------------------------- Delete after testing ----------------------------
@@ -90,9 +90,9 @@
             */
         }
 
-        private void SetSessionVariable(NetworkCredential networkCredentials, string autodiscoverEmail, Uri ewsUrl)
+        private void SetSessionVariable(NetworkCredential networkCredentials, string autodiscoverEmail, Uri ewsUrl, ExchangeVersion exchangeVersion)
         {
-            ExchangeService ewsService = new ExchangeService();
+            ExchangeService ewsService = new ExchangeService(exchangeVersion);
             ewsService.Credentials = networkCredentials;
 
             if (!String.IsNullOrEmpty(autodiscoverEmail))
@@ -119,9 +119,9 @@
         /// <param name="traceEnabled">Enable ews tracing.</param>
         /// <param name="traceFolder">Location where trace items will be saved.</param>
         /// <param name="traceFlags">Options what to trace.</param>
-        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl, string autodicoverEmail, string impersonateEmail, bool traceEnabled, string traceFolder, TraceFlags traceFlags)
+        internal void SetSessionVariable(string userName, SecureString password, Uri ewsUrl, string autodicoverEmail, string impersonateEmail, bool traceEnabled, string traceFolder, TraceFlags traceFlags, ExchangeVersion exchangeVersion)
         {
-            this.SetSessionVariable(userName, password, ewsUrl, autodicoverEmail);
+            this.SetSessionVariable(userName, password, ewsUrl, autodicoverEmail, exchangeVersion);
             this.SetSessionVariable(impersonateEmail, traceEnabled, traceFolder, traceFlags);
         }
 

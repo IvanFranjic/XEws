@@ -44,6 +44,7 @@ namespace XEws.CmdletAbstract
 
             SearchFilter searchFilter = searchFilterCollection;
             FindItemsResults<Item> findResult = folder.FindItems(searchFilter, iView);
+            
 
             return this.GetListItem(findResult);
         }
@@ -53,6 +54,7 @@ namespace XEws.CmdletAbstract
             List<Item> items = new List<Item>();
             foreach (Item item in findResult)
                 items.Add(item);
+            WriteVerbose(String.Format("Returning {0} items...", items.Count));
 
             return items;
         }

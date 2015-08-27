@@ -1,8 +1,6 @@
 ﻿namespace XEws.Cmdlet
 {
-    using System;
     using System.Management.Automation;
-    using Microsoft.Exchange.WebServices.Data;
     using XEws.CmdletAbstract;
     using System.Collections.Generic;
 
