@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using System.Collections.ObjectModel;
-
-namespace XEws.CmdletAbstract
+﻿namespace XEws.CmdletAbstract
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using System.Collections.ObjectModel;
+
     public abstract class XEwsDelegateCmdlet : XEwsCmdlet
     {
         private string delegateEmailAddress = String.Empty;
