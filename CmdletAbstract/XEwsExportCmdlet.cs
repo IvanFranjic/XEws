@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using System.Dynamic;
-
-namespace XEws.CmdletAbstract
+﻿namespace XEws.CmdletAbstract
 {
+    using System;
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
     using System.IO;
 
     public abstract class XEwsExportCmdlet : XEwsCmdlet

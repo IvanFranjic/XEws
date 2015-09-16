@@ -14,7 +14,7 @@ function Install-XEwsModule
     {
         try
         {
-            $null = New-Item -ItemType "Directory" -Path ($env:PSModulePath.Split(";")[0]) -Name "XEws" -Force -ErrorAction Stop;
+            $null = New-Item -ItemType "Directory" -Path ($env:PSModulePath.Split(";") -match $env:USERNAME) -Name "XEws" -Force -ErrorAction Stop;
             $null = New-Item -ItemType "Directory" -Path $moduleHomeFolder -Name "en-US" -Force;
         }
         catch
