@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Management.Automation;
-using XEws.CmdletAbstract;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System.Management.Automation;
+    using XEws.CmdletAbstract;
+    using System;
+
     [Cmdlet("Import", "XEwsSession")]
-    public class ImportXEwsSession : XEwsSessionCmdlet
+    public sealed class ImportXEwsSession : XEwsSessionCmdlet
     {
 
         protected override void ProcessRecord()

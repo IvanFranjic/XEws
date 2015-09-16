@@ -6,7 +6,7 @@
     using XEws.CmdletAbstract;
 
     [Cmdlet(VerbsCommon.Add, "XEwsFolder")]
-    public class AddXEwsFolder : XEwsFolderCmdlet
+    public sealed class AddXEwsFolder : XEwsFolderCmdlet
     {
 
         [Parameter(Mandatory = false, Position = 0)]

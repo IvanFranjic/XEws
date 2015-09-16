@@ -1,14 +1,12 @@
-﻿using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using XEws.CmdletAbstract;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using XEws.CmdletAbstract;
+
     [Cmdlet(VerbsCommon.Remove, "XEwsDelegate")]
-    public class RemoveXEwsDelegate : XEwsDelegateCmdlet
+    public sealed class RemoveXEwsDelegate : XEwsDelegateCmdlet
     {
-
-
         protected override void ProcessRecord()
         {
             XEwsDelegate xewsDelegate = new XEwsDelegate(this.DelegateEmailAddress);

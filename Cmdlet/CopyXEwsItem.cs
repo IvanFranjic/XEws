@@ -5,7 +5,7 @@
     using XEws.CmdletAbstract;
 
     [Cmdlet(VerbsCommon.Copy, "XEwsItem")]
-    public class CopyXEwsItem : XEwsItemMoveCmdlet
+    public sealed class CopyXEwsItem : XEwsItemMoveCmdlet
     {
 
         protected override void ProcessRecord()

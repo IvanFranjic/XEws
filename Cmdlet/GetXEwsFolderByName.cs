@@ -7,7 +7,7 @@
     using XEws.CmdletAbstract;
 
     [Cmdlet(VerbsCommon.Get, "XEwsFolderByName")]
-    public class GetXEwsFolderByName : XEwsFolderCmdlet
+    public sealed class GetXEwsFolderByName : XEwsFolderCmdlet
     { 
         [Parameter(Mandatory = true, Position = 1)]
         public string FolderName

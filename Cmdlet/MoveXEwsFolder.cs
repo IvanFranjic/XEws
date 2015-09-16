@@ -1,12 +1,12 @@
-﻿using System;
-using Microsoft.Exchange.WebServices.Data;
-using XEws.CmdletAbstract;
-using System.Management.Automation;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System;
+    using Microsoft.Exchange.WebServices.Data;
+    using XEws.CmdletAbstract;
+    using System.Management.Automation;
+
     [Cmdlet(VerbsCommon.Move, "XEwsFolder")]
-    public class MoveXEwsFolder : XEwsFolderCmdlet
+    public sealed class MoveXEwsFolder : XEwsFolderCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]
         public Folder Folder

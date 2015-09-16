@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using XEws.CmdletAbstract;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using XEws.CmdletAbstract;
+
     [Cmdlet(VerbsCommon.Move, "XEwsItem")]
-    public class MoveXEwsItem : XEwsItemMoveCmdlet
+    public sealed class MoveXEwsItem : XEwsItemMoveCmdlet
     {
 
         protected override void ProcessRecord()

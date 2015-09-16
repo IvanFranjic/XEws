@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using XEws.CmdletAbstract;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System.Collections.Generic;
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using XEws.CmdletAbstract;
+
     [Cmdlet(VerbsCommon.Get, "XEwsDelegate")]
-    public class GetXEwsDelegate : XEwsDelegateCmdlet
+    public sealed class GetXEwsDelegate : XEwsDelegateCmdlet
     {
 
 

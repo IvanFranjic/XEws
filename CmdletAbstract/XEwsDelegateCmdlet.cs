@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using System.Collections.ObjectModel;
-
-namespace XEws.CmdletAbstract
+﻿namespace XEws.CmdletAbstract
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+
     public abstract class XEwsDelegateCmdlet : XEwsCmdlet
     {
         private string delegateEmailAddress = String.Empty;
@@ -48,7 +47,7 @@ namespace XEws.CmdletAbstract
             {
                 receiveCopyOfMeetings = value;
             }
-        }
+        }        
 
         private DelegateFolderPermissionLevel calendarPermission = DelegateFolderPermissionLevel.None;
         [Parameter(Mandatory = false, Position = 3)]
@@ -103,6 +102,20 @@ namespace XEws.CmdletAbstract
             set
             {
                 contactPermission = value;
+            }
+        }
+
+        private MeetingRequestsDeliveryScope meetingRequestDeliveryScope = MeetingRequestsDeliveryScope.DelegatesAndMe;        
+        [Parameter(Mandatory = false, Position = 7)]
+        public MeetingRequestsDeliveryScope MeetingRequestDeliveryScope
+        {
+            get
+            {
+                return this.meetingRequestDeliveryScope;
+            }
+            set
+            {
+                this.meetingRequestDeliveryScope = value;
             }
         }
 

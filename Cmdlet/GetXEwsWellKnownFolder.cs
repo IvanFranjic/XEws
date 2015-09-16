@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using XEws.Cmdlet;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using XEws.CmdletAbstract;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using XEws.CmdletAbstract;
+
     /*
 
         Cmdlet is returning Folder object of WellKnownFolderId. This 
@@ -21,7 +15,7 @@ namespace XEws.Cmdlet
     */
 
     [Cmdlet(VerbsCommon.Get, "XEwsWellKnownFolder")]
-    public class GetXEwsWellKnownFolder : XEwsCmdlet
+    public sealed class GetXEwsWellKnownFolder : XEwsCmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]
         public WellKnownFolderName WellKnownFolder

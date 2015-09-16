@@ -5,7 +5,7 @@
     using System.Collections.Generic;
 
     [Cmdlet(VerbsCommon.Set, "XEwsDelegate")]
-    public class SetXEwsDelegate : XEwsDelegateCmdlet
+    public sealed class SetXEwsDelegate : XEwsDelegateCmdlet
     {
         protected override void ProcessRecord()
         {

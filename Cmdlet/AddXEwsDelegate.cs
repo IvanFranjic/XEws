@@ -1,12 +1,11 @@
-﻿using System;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using XEws.CmdletAbstract;
-
-namespace XEws.Cmdlet
+﻿namespace XEws.Cmdlet
 {
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using XEws.CmdletAbstract;
+
     [Cmdlet(VerbsCommon.Add, "XEwsDelegate")]
-    public class AddXEwsDelegate : XEwsDelegateCmdlet
+    public sealed class AddXEwsDelegate : XEwsDelegateCmdlet
     {
         protected override void ProcessRecord()
         {

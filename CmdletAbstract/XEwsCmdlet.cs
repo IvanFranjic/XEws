@@ -63,31 +63,6 @@
             NetworkCredential credentials = new NetworkCredential(userName, password);
 
             this.SetSessionVariable(credentials, autodiscoverEmail, ewsUrl, exchangeVersion);
-
-            /* 
-            ---------------------------- Delete after testing ----------------------------
-
-            UserNameFormat userNameFormat;
-            ValidateUserName(userName, out userNameFormat);
-
-            // Throw error if samAccountName is used and no ewsUrl is specified.
-            if (ewsUrl == null && userNameFormat == UserNameFormat.SamAccountName)
-                throw new InvalidOperationException(String.Format("Autodiscover could not detect Ews endpoint with specified user id: '{0}'. Please specify Ews endpoint manually.", userName));
-
-            ExchangeService ewsService = new ExchangeService();
-            
-            ewsService.Credentials = credentials;
-
-            if (ewsUrl == null && userNameFormat == UserNameFormat.EmailAddress)
-                ewsService.AutodiscoverUrl(userName, RedirectionUrlValidationCallback);
-
-            else
-                ewsService.Url = ewsUrl;
-
-            this.SessionState.PSVariable.Set("EwsSession", ewsService);
-
-            ---------------------------- Delete after testing ----------------------------
-            */
         }
 
         private void SetSessionVariable(NetworkCredential networkCredentials, string autodiscoverEmail, Uri ewsUrl, ExchangeVersion exchangeVersion)
@@ -107,7 +82,7 @@
 
             this.SessionState.PSVariable.Set("EwsSession", ewsService);
         }
-        
+      
 
         /// <summary>
         /// Method for setting $EwsSession session context variable.
@@ -212,22 +187,29 @@
         }
 
         /// <summary>
-        /// Method is creating temporary post item and deletes it as soon as creator address is extracted.
+        /// Method is creating temporary post item and deletes it as soon as creator address is determined.
         /// </summary>
         /// <returns></returns>
         internal string GetCurrentUser()
         {
-            PostItem postItem = new PostItem(this.GetSessionVariable());
-            postItem.Body = new MessageBody("Ews temp post item");
-            postItem.Save();
+            try
+            {
+                PostItem postItem = new PostItem(this.GetSessionVariable());
+                postItem.Body = new MessageBody("Ews temp post item");
+                postItem.Save();
 
-            PostItem tempPostItem = PostItem.Bind(this.GetSessionVariable(), postItem.Id);
-            string from = tempPostItem.From.Address.ToString();
+                PostItem tempPostItem = PostItem.Bind(this.GetSessionVariable(), postItem.Id);
+                string from = tempPostItem.From.Address.ToString();
 
-            postItem = null;
-            tempPostItem.Delete(DeleteMode.HardDelete);
+                postItem = null;
+                tempPostItem.Delete(DeleteMode.HardDelete);
 
-            return from.ToLower();
+                return from.ToLower();
+            }
+            catch
+            {
+                return null;
+            }            
         }
 
         /// <summary>
