@@ -1,27 +1,25 @@
 ﻿namespace XEws.Cmdlet
 {
     using System.Management.Automation;
+    using XEws.CmdletAbstract;
 
     [Cmdlet( VerbsCommon.Remove , "XEwsSession" )]
-    public sealed class RemoveXEwsSession : PSCmdlet
+    public sealed class RemoveXEwsSession : XEwsCmdlet
     {
         protected override void ProcessRecord ( )
         {
-            if (this.SessionVariableExist())
+            try
             {
+                var sessionVariable = this.GetSessionVariable( );
                 WriteWarning( string.Format( "Removing session variable." ) );
+
                 this.RemoveSessionVariable( );
             }
+            catch ( System.Exception )
+            {
+            }
         }
-
-        internal bool SessionVariableExist()
-        {
-            if ( this.SessionState.PSVariable.Get( "EwsSession" ) != null )
-                return true;
-
-            return false;
-        }
-
+        
         internal void RemoveSessionVariable()
         {
             this.SessionState.PSVariable.Remove( "EwsSession" );
