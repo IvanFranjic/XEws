@@ -7,7 +7,8 @@
 
     public abstract class XEwsExportCmdlet : XEwsCmdlet
     {
-        [Parameter(Position = 0, ValueFromPipeline = true)]
+        [Parameter(Position = 0, ValueFromPipeline = true, Mandatory = true)]
+        [ValidateNotNullOrEmpty]
         public Item ItemToExport
         {
             get;
@@ -49,7 +50,10 @@
                 Directory.CreateDirectory(directory);
 
             if (string.IsNullOrEmpty(this.fileName))
-                fileName = String.Format("Email-{0}-{1}", emailMessage.ConversationTopic.Substring(0, 10), rNumber.Next(1, 10));
+            {
+                int subjectLenght = emailMessage.ConversationTopic.Length > 10 ? 10 : emailMessage.ConversationTopic.Length;
+                fileName = String.Format( "Email-{0}-{1}" , emailMessage.ConversationTopic.Substring( 0 , subjectLenght ) , rNumber.Next( 1 , 10 ) );
+            }
 
             fileName = Path.Combine(directory, string.Format("{0}.eml", fileName));
 

@@ -73,7 +73,7 @@
             if (!String.IsNullOrEmpty(autodiscoverEmail))
             {
                 this.ValidateEmailAddress(autodiscoverEmail);
-                ewsService.AutodiscoverUrl(autodiscoverEmail, RedirectionUrlValidationCallback);
+                ewsService.AutodiscoverUrl(autodiscoverEmail, this.RedirectionUrlValidationCallback);
             }                
             else if (ewsUrl != null)
                 ewsService.Url = ewsUrl;
@@ -233,8 +233,10 @@
         /// </summary>
         /// <param name="redirectionUrl">Redirection url passed by delegate.</param>
         /// <returns></returns>
-        internal static bool RedirectionUrlValidationCallback(String redirectionUrl)
+        internal bool RedirectionUrlValidationCallback(String redirectionUrl)
         {
+            WriteWarning( string.Format( "Autodiscover redirect to: {0}" , redirectionUrl ) );
+
             return redirectionUrl.ToLower().StartsWith("https://");
         }
         
