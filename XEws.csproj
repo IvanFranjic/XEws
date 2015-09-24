@@ -74,6 +74,7 @@
     <Compile Include="Cmdlet\MoveXEwsItem.cs" />
     <Compile Include="Cmdlet\RemoveXEwsDelegate.cs" />
     <Compile Include="Cmdlet\RemoveXEwsFolder.cs" />
+    <Compile Include="Cmdlet\RemoveXEwsSession.cs" />
     <Compile Include="Cmdlet\SetXEwsDelegate.cs" />
     <Compile Include="Cmdlet\SetXEwsSession.cs" />
     <None Include="InstallXEwsModule.ps1" />
