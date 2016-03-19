@@ -5,7 +5,7 @@
     using Microsoft.Exchange.WebServices.Data;
 
     [Cmdlet(VerbsCommon.Get, "EwsFolder")]
-    [CmdletBinding(DefaultParameterSetName = "FolderId")]
+    [CmdletBinding()]
     public class GetEwsFolder : EwsCmdlet
     {
         #region Properties
@@ -40,18 +40,18 @@
         }
 
         private bool recurse = false;
-        [Parameter(Mandatory = false, ParameterSetName = "RecurseSearch")]
-        public bool Recurse
-        {
-            get
-            {
-                return this.recurse;
-            }
-            set
-            {
-                this.recurse = value;
-            }
-        }
+        //[Parameter(Mandatory = false, ParameterSetName = "RecurseSearch")]
+        //public bool Recurse
+        //{
+        //    get
+        //    {
+        //        return this.recurse;
+        //    }
+        //    set
+        //    {
+        //        this.recurse = value;
+        //    }
+        //}
 
 
         #endregion
@@ -80,11 +80,7 @@
         #endregion
 
         #region Override Methods
-
-        protected override void BeginProcessing()
-        {
-        }
-
+        
         protected override void ProcessRecord()
         {
             EwsFolder folderSearcher = new EwsFolder(this.EwsSession, null);

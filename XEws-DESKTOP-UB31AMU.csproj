@@ -81,6 +81,7 @@
     <None Include="InstallXEwsModule.ps1" />
     <Compile Include="Model\EwsErrorMessage.cs" />
     <Compile Include="Model\EwsTracer.cs" />
+    <Compile Include="Model\EwsUserNameFormat.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsAvailability.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsFolder.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsItem.cs" />

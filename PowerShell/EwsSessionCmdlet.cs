@@ -1,7 +1,10 @@
 ﻿namespace XEws.PowerShell
 {
+    using System;
+    using XEws.Model;
     using System.Security;
     using System.Management.Automation;
+    using System.Text.RegularExpressions;
     using Microsoft.Exchange.WebServices.Data;
 
     public class EwsSessionCmdlet : EwsCmdletAbstract
@@ -58,6 +61,34 @@
             // TODO: Implement verbose strings.
             this.WriteVerbose("Autodiscover will be redirected to " + url);
             return url.StartsWith("https://");
+        }
+
+        /// <summary>
+        /// Validates which of provided fields will be used for username.
+        /// </summary>
+        /// <param name="emailAddress">emailAddress field.</param>
+        /// <param name="userName">userName field.</param>
+        /// <param name="userIdentity">returns identity between two.</param>
+        internal void ValidateUserName(string emailAddress, string userName, out string userIdentity)
+        {
+            if (!string.IsNullOrEmpty(userName))
+            {
+                try
+                {
+                    this.ValidateEmailAddress(userName);
+                }
+                catch
+                {
+                    Regex samAccountNameFormat = new Regex(".+\\\\.+");
+                    Match samAccountNameMatch = samAccountNameFormat.Match(userName);
+
+                    if (!samAccountNameMatch.Success)
+                        throw new InvalidOperationException(String.Format("Provided username '{0}' is not in correct format. Please use one of the following format: 'domain\\username' or 'username@domain.com'", userName));
+                }
+                userIdentity = userName;
+            }
+            else
+                userIdentity = emailAddress;
         }
 
         #endregion

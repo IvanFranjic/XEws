@@ -33,6 +33,20 @@
         [Parameter(Mandatory = true, Position = 1)]
         public SecureString Password { get; set; }
 
+        private string userName = null;
+        [Parameter(Mandatory = false)]
+        public string UserName
+        {
+            get
+            {
+                return this.userName;
+            }
+            set
+            {
+                this.userName = value;
+            }
+        }
+
         [Parameter(Mandatory = false, Position = 2, ParameterSetName = "ManualEwsEndpoint")]
         public Uri EwsEndpoint { get; set; }
 
@@ -104,11 +118,12 @@
             this.WriteWarning(
                 string.Format("Instantiating ews session. Please wait...")
             );
-
+            string userIdentity = string.Empty;
             // TODO: X-AnchorMailbox - what about impersonation. Check if impersonation is called
             // if so, anchor should be impersonated user, otherwise authenticated user.
             ExchangeService ewsSession = new ExchangeService(this.ExchangeVersion);
-            ewsSession.Credentials = new NetworkCredential(this.EmailAddress, this.Password);
+            this.ValidateUserName(this.EmailAddress, this.UserName, out userIdentity);
+            ewsSession.Credentials = new NetworkCredential(userIdentity, this.Password);
             ewsSession.HttpHeaders.Add("X-AnchorMailbox", this.EmailAddress);
             
             if (this.traceEnabled)
