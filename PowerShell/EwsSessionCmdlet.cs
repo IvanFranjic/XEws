@@ -1,15 +1,32 @@
 ﻿namespace XEws.PowerShell
 {
     using System;
+    using System.Net;
     using XEws.Model;
     using System.Security;
+    using System.Net.Security;
     using System.Management.Automation;
     using System.Text.RegularExpressions;
     using Microsoft.Exchange.WebServices.Data;
+    using System.Security.Cryptography.X509Certificates;
 
     public class EwsSessionCmdlet : EwsCmdletAbstract
     {
         #region Properties
+
+        private bool trustAllCertificates = false;
+        [Parameter(Mandatory = false, Position = 9)]
+        public bool TrustAllCertificates
+        {
+            get
+            {
+                return this.trustAllCertificates;
+            }
+            set
+            {
+                this.trustAllCertificates = value;
+            }
+        }
 
         #endregion
 
@@ -91,9 +108,39 @@
                 userIdentity = emailAddress;
         }
 
+        /// <summary>
+        /// Validate if connection to ssl site is secure (certificate is valid) and returns true
+        /// or false, depending on result. At this point it will always return true which means
+        /// that all certificates will be considered as valid.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="certificateToVerify"></param>
+        /// <param name="certificateChain"></param>
+        /// <param name="sslErrors"></param>
+        /// <returns></returns>
+        internal bool ValidateServerCertificateCallBack(object sender, X509Certificate certificateToVerify, X509Chain certificateChain, SslPolicyErrors sslErrors)
+        {
+            // TODO: for now just return true. Consider expiration checks, trust chain...
+            return true;
+        }
+
         #endregion
 
         #region Override Methods
+
+        protected override void BeginProcessing()
+        {
+            // 
+            if (this.trustAllCertificates)
+            {
+                if (this.ShouldContinue(
+                    "You chose to trust all certificates. Please confirm before continuing. If you choose YES connection will trust all certificates.",
+                    string.Empty
+                ))
+                    ServicePointManager.ServerCertificateValidationCallback = this.ValidateServerCertificateCallBack;
+            }
+                
+        }
 
         #endregion
     }
