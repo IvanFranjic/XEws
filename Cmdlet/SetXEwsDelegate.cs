@@ -9,8 +9,11 @@
     {
         protected override void ProcessRecord()
         {
+            // Check if requested delegate exist on the specified user account
             XEwsDelegate ewsDelegate = this.GetDelegate(this.DelegateEmailAddress);
 
+            // If delegate exist, get all settings provided by caller and update
+            // them accordingly.
             foreach (KeyValuePair<string, object> passedParameter in this.MyInvocation.BoundParameters)
             {
                 switch (passedParameter.Key.ToString())

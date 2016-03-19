@@ -1,11 +1,11 @@
-﻿using System;
-using System.Management.Automation;
-using Microsoft.Exchange.WebServices.Data;
-using System.IO;
-using System.Security;
-
-namespace XEws.CmdletAbstract
+﻿namespace XEws.CmdletAbstract
 {
+    using System;
+    using System.Management.Automation;
+    using Microsoft.Exchange.WebServices.Data;
+    using System.IO;
+    using System.Security;
+    
     public abstract class XEwsSessionCmdlet : XEwsCmdlet
     {
         private string autodiscoverEmail = null;
@@ -81,6 +81,8 @@ namespace XEws.CmdletAbstract
             }
             set
             {
+                // validate if provided path exist.
+                ValidateTracePath(value);
                 traceOutputFolder = value;
             }
         }

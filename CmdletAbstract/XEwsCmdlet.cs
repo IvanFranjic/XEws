@@ -31,7 +31,7 @@
         }
 
         #endregion
-        
+
 
         #region Methods
 
@@ -40,16 +40,20 @@
         /// located in current powershell session.
         /// </summary>
         /// <returns>ExchangeService</returns>
+        /// 
+        // Removing command from the module, new set of Ews command will be
+        // introduced.
         internal virtual ExchangeService GetSessionVariable()
         {
-            PSVariable ewsSession = this.SessionState.PSVariable.Get("EwsSession");
+            //PSVariable ewsSession = this.SessionState.PSVariable.Get("EwsSession");
 
-            if (ewsSession == null)
-                throw new InvalidOperationException("Could not find session. Please use Import-XEwsSession and try again.");
+            //if (ewsSession == null)
+            //    throw new InvalidOperationException("Could not find session. Please use Import-XEwsSession and try again.");
 
-            ExchangeService session = (ExchangeService)ewsSession.Value;
-            
-            return session;
+            //ExchangeService session = (ExchangeService)ewsSession.Value;
+
+            //return session;
+            return null;
         }
 
         /// <summary>

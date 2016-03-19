@@ -1,10 +1,10 @@
-﻿using System;
-using Microsoft.Exchange.WebServices.Data;
-using System.Xml;
-using System.IO;
-
-namespace XEws.Tracer
+﻿namespace XEws.Tracer
 {
+    using System;
+    using Microsoft.Exchange.WebServices.Data;
+    using System.Xml;
+    using System.IO;
+
     public class TraceListener : ITraceListener
     {
         public TraceListener(string tracePath)

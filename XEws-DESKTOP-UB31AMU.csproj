@@ -78,8 +78,26 @@
     <Compile Include="Cmdlet\RemoveXEwsFolder.cs" />
     <Compile Include="Cmdlet\RemoveXEwsSession.cs" />
     <Compile Include="Cmdlet\SetXEwsDelegate.cs" />
-    <Compile Include="Cmdlet\SetXEwsSession.cs" />
     <None Include="InstallXEwsModule.ps1" />
+    <Compile Include="Model\EwsErrorMessage.cs" />
+    <Compile Include="Model\EwsTracer.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetEwsAvailability.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetEwsFolder.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetEwsItem.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetEwsSession.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetEwsWellKnownFolderId.cs" />
+    <Compile Include="PowerShell\Cmdlet\ImportEwsSession.cs" />
+    <Compile Include="Model\EwsFolder.cs" />
+    <Compile Include="Model\EwsItem.cs" />
+    <Compile Include="Model\EwsSearcher.cs" />
+    <Compile Include="Model\EwsSearchResultEntryEventArgs.cs" />
+    <Compile Include="PowerShell\Cmdlet\RemoveEwsSession.cs" />
+    <Compile Include="PowerShell\Cmdlet\SetEwsSession.cs" />
+    <Compile Include="PowerShell\EwsCmdlet.cs" />
+    <Compile Include="PowerShell\EwsCmdletAbstract.cs" />
+    <Compile Include="PowerShell\EwsPowerShellVariable.cs" />
+    <Compile Include="PowerShell\EwsSessionCmdlet.cs" />
+    <Compile Include="PowerShell\EwsWellKnownFolder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tracer\TraceListener.cs" />
   </ItemGroup>
@@ -104,7 +122,9 @@
     <Content Include="EWSManagedAPI\Microsoft.Exchange.WebServices.dll" />
     <Content Include="EWSManagedAPI\Microsoft.Exchange.WebServices.xml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Cmdlets\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

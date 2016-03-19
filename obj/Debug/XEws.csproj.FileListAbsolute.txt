@@ -9,3 +9,14 @@ C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\Microsoft.Exchange.WebServices.dl
 C:\Users\ifranjic\Documents\Git\XEws\bin\Debug\Microsoft.Exchange.WebServices.xml
 C:\Users\ifranjic\Documents\Git\XEws\obj\Debug\XEws.dll
 C:\Users\ifranjic\Documents\Git\XEws\obj\Debug\XEws.pdb
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\bin\Debug\en-US\XEws.dll-Help.xml
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\bin\Debug\en-US\XEws.Help.pshproj
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\bin\Debug\XEws.format.ps1xml
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\bin\Debug\XEws.psd1
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\bin\Debug\XEws.dll
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\bin\Debug\XEws.pdb
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\bin\Debug\Microsoft.Exchange.WebServices.dll
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\bin\Debug\Microsoft.Exchange.WebServices.xml
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\obj\Debug\XEws.csprojResolveAssemblyReference.cache
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\obj\Debug\XEws.dll
+C:\Users\Ivan Franjic\OneDrive\GitHub\XEws\obj\Debug\XEws.pdb

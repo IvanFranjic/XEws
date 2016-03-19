@@ -2,7 +2,7 @@
 <Configuration>
   <ViewDefinitions>
 	  <View>
-		  <Name>XEwsFolder</Name>
+		  <Name>EwsFolder</Name>
 		  <ViewSelectedBy>
 			  <TypeName>Microsoft.Exchange.WebServices.Data.Folder</TypeName>
 		  </ViewSelectedBy>
@@ -42,7 +42,7 @@
 		  </TableControl>
 	  </View>
 	  <View>
-		  <Name>XEwsEmailMessage</Name>
+		  <Name>EwsEmailMessage</Name>
 		  <ViewSelectedBy>
 			  <TypeName>Microsoft.Exchange.WebServices.Data.EmailMessage</TypeName>
 		  </ViewSelectedBy>
@@ -82,7 +82,7 @@
 		  </TableControl>
 	  </View>
     <View>
-        <Name>XEwsPostItem</Name>
+        <Name>EwsPostItem</Name>
         <ViewSelectedBy>
           <TypeName>Microsoft.Exchange.WebServices.Data.PostItem</TypeName>
         </ViewSelectedBy>
@@ -115,45 +115,5 @@
           </TableRowEntries>
         </TableControl>
       </View>
-    <View>
-      <Name>XEwsDelegate</Name>
-        <ViewSelectedBy>
-          <TypeName>XEws.CmdletAbstract.XEwsDelegateCmdlet+XEwsDelegate</TypeName>
-        </ViewSelectedBy>
-        <TableControl>
-          <TableHeaders>
-            <TableColumnHeader>
-              <Width>30</Width>
-            </TableColumnHeader>
-            <TableColumnHeader>
-              <Width>30</Width>
-            </TableColumnHeader>
-            <TableColumnHeader>
-              <Width>30</Width>
-            </TableColumnHeader>
-            <TableColumnHeader>
-              <Width>30</Width>
-            </TableColumnHeader>
-          </TableHeaders>
-          <TableRowEntries>
-            <TableRowEntry>
-              <TableColumnItems>
-                <TableColumnItem>
-                  <PropertyName>DelegateUserId</PropertyName>
-                </TableColumnItem>
-                <TableColumnItem>
-                  <PropertyName>CalendarFolderPermission</PropertyName>
-                </TableColumnItem>
-                <TableColumnItem>
-                  <PropertyName>InboxFolderPermission</PropertyName>
-                </TableColumnItem>
-                <TableColumnItem>
-                  <PropertyName>ContactFolderPermission</PropertyName>
-                </TableColumnItem>
-              </TableColumnItems>
-            </TableRowEntry>
-          </TableRowEntries>
-        </TableControl>
-    </View>
   </ViewDefinitions>
 </Configuration>
