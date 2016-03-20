@@ -79,6 +79,9 @@
     <Compile Include="Cmdlet\RemoveXEwsSession.cs" />
     <Compile Include="Cmdlet\SetXEwsDelegate.cs" />
     <None Include="InstallXEwsModule.ps1" />
+    <Compile Include="Model\EwsMailTip.cs" />
+    <Compile Include="Model\EwsMailTipType.cs" />
+    <Compile Include="Model\EwsSoapMessage.cs" />
     <Compile Include="Model\EwsTracer.cs" />
     <Compile Include="Model\EwsUserNameFormat.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsAvailability.cs" />
@@ -117,6 +120,7 @@
     <Content Include="en-US\XEws.dll-Help.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="EwsMailTipRequest.xml" />
     <Content Include="EWSManagedAPI\Microsoft.Exchange.WebServices.Auth.dll" />
     <Content Include="EWSManagedAPI\Microsoft.Exchange.WebServices.Auth.xml" />
     <Content Include="EWSManagedAPI\Microsoft.Exchange.WebServices.dll" />

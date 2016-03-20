@@ -115,7 +115,7 @@
           </TableRowEntries>
         </TableControl>
       </View>
-      <View>
+    <View>
       <Name>AttendeeAvailability</Name>
       <ViewSelectedBy>
         <TypeName>Microsoft.Exchange.WebServices.Data.AttendeeAvailability</TypeName>
