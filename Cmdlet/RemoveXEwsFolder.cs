@@ -4,8 +4,9 @@
     using Microsoft.Exchange.WebServices.Data;
     using XEws.CmdletAbstract;
     using System.Management.Automation;
-
-    [Cmdlet(VerbsCommon.Remove, "XEwsFolder")]
+    // Removing command from the module, new set of Ews command will be
+    // introduced.
+    //[Cmdlet(VerbsCommon.Remove, "XEwsFolder")]
     public sealed class RemoveXEwsFolder : XEwsFolderCmdlet
     {
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true)]

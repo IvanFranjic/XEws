@@ -5,7 +5,9 @@
     using Microsoft.Exchange.WebServices.Data;
     using XEws.CmdletAbstract;
 
-    [Cmdlet(VerbsCommon.Get, "XEwsDelegate")]
+    // Removing command from the module, new set of Ews command will be
+    // introduced.
+    //[Cmdlet(VerbsCommon.Get, "XEwsDelegate")]
     public sealed class GetXEwsDelegate : XEwsDelegateCmdlet
     {
 

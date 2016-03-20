@@ -2,8 +2,9 @@
 {
     using System.Management.Automation;
     using XEws.CmdletAbstract;
-
-    [Cmdlet( VerbsCommon.Remove , "XEwsSession" )]
+    // Removing command from the module, new set of Ews command will be
+    // introduced.
+    //[Cmdlet( VerbsCommon.Remove , "XEwsSession" )]
     public sealed class RemoveXEwsSession : XEwsCmdlet
     {
         protected override void ProcessRecord ( )

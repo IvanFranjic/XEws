@@ -3,8 +3,9 @@
     using System.Management.Automation;
     using XEws.CmdletAbstract;
     using System.Collections.Generic;
-
-    [Cmdlet(VerbsCommon.Set, "XEwsDelegate")]
+    // Removing command from the module, new set of Ews command will be
+    // introduced.
+    //[Cmdlet(VerbsCommon.Set, "XEwsDelegate")]
     public sealed class SetXEwsDelegate : XEwsDelegateCmdlet
     {
         protected override void ProcessRecord()

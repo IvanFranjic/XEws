@@ -3,8 +3,9 @@
     using System.Management.Automation;
     using Microsoft.Exchange.WebServices.Data;
     using XEws.CmdletAbstract;
-
-    [Cmdlet(VerbsCommon.Move, "XEwsItem")]
+    // Removing command from the module, new set of Ews command will be
+    // introduced.
+    //[Cmdlet(VerbsCommon.Move, "XEwsItem")]
     public sealed class MoveXEwsItem : XEwsItemMoveCmdlet
     {
 

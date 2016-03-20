@@ -13,8 +13,9 @@
         Command is completed together with help.
 
     */
-
-    [Cmdlet(VerbsCommon.Get, "XEwsWellKnownFolder")]
+    // Removing command from the module, new set of Ews command will be
+    // introduced.
+    //[Cmdlet(VerbsCommon.Get, "XEwsWellKnownFolder")]
     public sealed class GetXEwsWellKnownFolder : XEwsCmdlet
     {
         [Parameter(Mandatory = true, Position = 0)]
