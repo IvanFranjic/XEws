@@ -4,7 +4,7 @@ function Install-XEwsModule
     [CmdletBinding()]
     param()
 
-    $moduleFiles = @("Microsoft.Exchange.WebServices.dll", "Microsoft.Exchange.WebServices.xml", "XEws.dll", "XEws.format.ps1xml", "XEws.psd1", "en-US/XEws.dll-Help.xml");
+    $moduleFiles = @("Microsoft.Exchange.WebServices.dll", "Microsoft.Exchange.WebServices.xml", "XEws.dll", "XEws.format.ps1xml", "XEws.psd1", "en-US/XEws.dll-Help.xml", "AutoUpdate.ps1", "EwsMailTipRequest.xml");
     $githubEwsEndpoint = "https://raw.githubusercontent.com/IvanFranjic/XEws/master/bin/Debug/";
     $moduleHomeFolder = [String]::Format("{0}\XEws", $env:PSModulePath.Split(";") -match $env:USERNAME);
 
