@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Header>
+    <RequestServerVersion Version="$requestedServerVersion" xmlns="http://schemas.microsoft.com/exchange/services/2006/types" />
+  </soap:Header>
+  <soap:Body>
+    <GetMailTips xmlns="http://schemas.microsoft.com/exchange/services/2006/messages">
+      <SendingAs>
+        <EmailAddress xmlns="http://schemas.microsoft.com/exchange/services/2006/types">$sender</EmailAddress>
+      </SendingAs>
+      <Recipients>
+        <Mailbox xmlns="http://schemas.microsoft.com/exchange/services/2006/types">
+          <EmailAddress>$recipient</EmailAddress>
+        </Mailbox>
+      </Recipients>
+      <MailTipsRequested>$mailTipType</MailTipsRequested>
+    </GetMailTips>
+  </soap:Body>
+</soap:Envelope>
