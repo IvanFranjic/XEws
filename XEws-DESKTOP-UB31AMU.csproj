@@ -79,7 +79,6 @@
     <Compile Include="Cmdlet\RemoveXEwsSession.cs" />
     <Compile Include="Cmdlet\SetXEwsDelegate.cs" />
     <None Include="InstallXEwsModule.ps1" />
-    <Compile Include="Model\EwsErrorMessage.cs" />
     <Compile Include="Model\EwsTracer.cs" />
     <Compile Include="Model\EwsUserNameFormat.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsAvailability.cs" />
