@@ -12,7 +12,7 @@
 RootModule = 'XEws.dll'
 
 # Version number of this module.
-ModuleVersion = '2.0'
+ModuleVersion = '1.0'
 
 # ID used to uniquely identify this module
 GUID = '2ad80d4a-d4c2-4d67-bd82-6764cc2db84e'
@@ -50,11 +50,11 @@ PowerShellVersion = '3.0'
 # Modules that must be imported into the global environment prior to importing this module
 # RequiredModules = @()
 
+# Script files (.ps1) that are run in the caller's environment prior to importing this module.
+# ScriptsToProcess = @("AutoUpdate.ps1")
+
 # Assemblies that must be loaded prior to importing this module
 RequiredAssemblies = 'Microsoft.Exchange.WebServices.dll'
-
-# Script files (.ps1) that are run in the caller's environment prior to importing this module.
-ScriptsToProcess = @("AutoUpdate.ps1")
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()

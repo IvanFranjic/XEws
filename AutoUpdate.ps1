@@ -15,7 +15,7 @@ function Get-EwsOnlineVersion
     {
         $moduleTempManifestPath = [String]::Format('{0}\{1}', $ModuleHomePath, 'XEws-OnlineVersion.psd1');
         $webClient = New-Object System.Net.WebClient;        
-        $webClient.DownloadFile('https://raw.githubusercontent.com/IvanFranjic/XEws/master/bin/Debug/XEws.psd1', $moduleTempManifestPath)
+        $webClient.DownloadFile('https://raw.githubusercontent.com/IvanFranjic/XEws/master/bin/Debug/XEws.psd1', $moduleTempManifestPath);
         Get-EwsModuleVersion -ModuleData (Get-Content $moduleTempManifestPath | Select-String -Pattern 'ModuleVersion' -CaseSensitive);
     }
     catch
