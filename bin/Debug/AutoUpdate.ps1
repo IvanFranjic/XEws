@@ -54,6 +54,7 @@ function Get-EwsModuleVersion
     return $null;
 }
 
+
 # --- Main --- #
 
 $xewsModuleHomePath = [String]::Format('{0}\XEws', $env:PSModulePath.Split(';') -match $env:USERNAME);

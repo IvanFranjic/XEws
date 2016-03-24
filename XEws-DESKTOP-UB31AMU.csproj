@@ -90,6 +90,7 @@
     <Compile Include="PowerShell\Cmdlet\GetEwsAvailability.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsFolder.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsItem.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetEwsMailTip.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsSession.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsWellKnownFolderId.cs" />
     <Compile Include="PowerShell\Cmdlet\ImportEwsSession.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="PowerShell\Cmdlet\SetEwsSession.cs" />
     <Compile Include="PowerShell\EwsCmdlet.cs" />
     <Compile Include="PowerShell\EwsCmdletAbstract.cs" />
+    <Compile Include="PowerShell\EwsMailTipCmdlet.cs" />
     <Compile Include="PowerShell\EwsPowerShellVariable.cs" />
     <Compile Include="PowerShell\EwsSessionCmdlet.cs" />
     <Compile Include="PowerShell\EwsWellKnownFolder.cs" />

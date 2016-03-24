@@ -26,12 +26,25 @@
             set
             {
                 this.ValidateEmailAddress(value.ToString());
+                this.SetPowerShellVariable(EwsPowerShellVariable.EwsUserName, value);
                 this.emailAddress = value;
             }
         }
 
+        private SecureString password;
         [Parameter(Mandatory = true, Position = 1)]
-        public SecureString Password { get; set; }
+        public SecureString Password
+        {
+            get
+            {
+                return this.password;
+            }
+            set
+            {
+                this.SetPowerShellVariable(EwsPowerShellVariable.EwsPassword, value);
+                this.password = value;
+            }
+        }
 
         private string userName = null;
         [Parameter(Mandatory = false)]

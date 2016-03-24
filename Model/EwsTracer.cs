@@ -7,10 +7,12 @@
     public class EwsTracer : ITraceListener
     {
         #region Properties
-        
+
         #endregion
 
         #region Fields
+
+        private bool traceEnabled = true;
 
         #endregion
 
@@ -18,7 +20,12 @@
 
         public EwsTracer()
         {
+            new EwsTracer(true);
+        }
 
+        public EwsTracer(bool enabled)
+        {
+            this.traceEnabled = enabled;
         }
 
         #endregion
@@ -32,7 +39,8 @@
         /// <param name="traceMessage">Trace message.</param>
         public void Trace(string traceType, string traceMessage)
         {
-            this.WriteTraceMessage(traceMessage, this.GetLoggingPath(traceType));
+            if (this.traceEnabled)
+                this.WriteTraceMessage(traceMessage, this.GetLoggingPath(traceType));
         }
                 
         #endregion

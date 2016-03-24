@@ -5,6 +5,8 @@
     /// </summary>
     enum EwsPowerShellVariable
     {
-        ExchangeService
+        ExchangeService,
+        EwsUserName,
+        EwsPassword,        
     }
 }
