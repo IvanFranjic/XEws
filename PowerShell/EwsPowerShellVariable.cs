@@ -7,6 +7,7 @@
     {
         ExchangeService,
         EwsUserName,
-        EwsPassword,        
+        EwsPassword,
+        EwsCredential
     }
 }

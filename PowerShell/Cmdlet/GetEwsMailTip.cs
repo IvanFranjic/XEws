@@ -33,7 +33,7 @@
             NetworkCredential credentials = new NetworkCredential(
                 (string)this.GetPowerShellVariable(EwsPowerShellVariable.EwsUserName).Value, 
                 (SecureString)this.GetPowerShellVariable(EwsPowerShellVariable.EwsPassword).Value);
-
+            
             XmlDocument mailTip = ewsMailTip.GetMailTip(credentials, this.EwsSession.Url.ToString(), this.EwsSession.TraceEnabled);
 
             this.WriteObject(mailTip, true);
