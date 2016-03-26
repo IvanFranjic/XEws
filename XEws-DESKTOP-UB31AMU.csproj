@@ -88,6 +88,7 @@
     <Compile Include="Model\EwsTracer.cs" />
     <Compile Include="Model\EwsUserNameFormat.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsAvailability.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetEwsExtendedPropertySet.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsFolder.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsItem.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsMailTip.cs" />
