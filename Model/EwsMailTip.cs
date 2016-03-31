@@ -57,9 +57,30 @@
             XmlDocument soapResponse = new XmlDocument();
             soapResponse.LoadXml(streamReader.ReadToEnd());
 
-            tracer.Trace("MailTipResponse", soapResponse.ToString());
+            string soapResponseString = this.GetXmlText(soapResponse);
+
+            tracer.Trace("MailTipResponse", soapResponseString);
 
             return soapResponse;
+        }
+
+        /// <summary>
+        /// Gets string representation of xml document.
+        /// </summary>
+        /// <param name="xmlDocument"></param>
+        /// <returns></returns>
+        private string GetXmlText(XmlDocument xmlDocument)
+        {
+            using (StringWriter stringWriter = new StringWriter())
+            {
+                using (var xmlWriter = XmlWriter.Create(stringWriter))
+                {
+                    xmlDocument.WriteTo(xmlWriter);
+                    xmlWriter.Flush();
+
+                    return stringWriter.GetStringBuilder().ToString();
+                }
+            }
         }
 
 
