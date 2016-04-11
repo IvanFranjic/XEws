@@ -12,7 +12,7 @@
 RootModule = 'XEws.dll'
 
 # Version number of this module.
-ModuleVersion = '1.0'
+ModuleVersion = '2.0'
 
 # ID used to uniquely identify this module
 GUID = '2ad80d4a-d4c2-4d67-bd82-6764cc2db84e'
