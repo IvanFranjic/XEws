@@ -115,3 +115,5 @@ catch
 {
     Write-EwsUpdateLog -Message "Could not download newer module version. Error: $($_.Exception.Message)." -CallingFunction "Script Root";
 }
+
+Add-Type -Path ([System.IO.Path]::Combine($xewsModuleHomePath, "Microsoft.Exchange.WebServices.dll"));
