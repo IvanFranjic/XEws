@@ -21,7 +21,7 @@ GUID = '2ad80d4a-d4c2-4d67-bd82-6764cc2db84e'
 Author = 'Ivan Franjic / franjic.ivan@outlook.com'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = ''
 
 # Copyright statement for this module
 Copyright = '(c) 2015 Ivan Franjic / franjic.ivan@outlook.com. All rights reserved.'
@@ -51,10 +51,11 @@ PowerShellVersion = '3.0'
 # RequiredModules = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-# ScriptsToProcess = @("AutoUpdate.ps1")
+ScriptsToProcess = @("AutoUpdate.ps1")
 
 # Assemblies that must be loaded prior to importing this module
-RequiredAssemblies = 'Microsoft.Exchange.WebServices.dll'
+# Loading assembly in AutoUpdate.ps1 to avoid file lock if assembly is loaded before all files are downloaded.
+# RequiredAssemblies = 'Microsoft.Exchange.WebServices.dll'
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
