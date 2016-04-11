@@ -92,7 +92,7 @@ function Write-EwsUpdateLog
 # --- Main --- #
 
 $xewsModuleHomePath = [String]::Format('{0}\XEws', $env:PSModulePath.Split(';') -match $env:USERNAME);
-$Global:ewsLogPath = ([System.IO.Path]::Combine($xewsModuleHomePath, "EwsUpdateLog.txt");
+$Global:ewsLogPath = ([System.IO.Path]::Combine($xewsModuleHomePath, "EwsUpdateLog.txt"));
 
 try
 {
