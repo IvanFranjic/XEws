@@ -12,15 +12,14 @@
 
         #region Fields
 
-        private bool traceEnabled = true;
+        private bool traceEnabled = false;
 
         #endregion
 
         #region Constructors
 
-        public EwsTracer()
+        public EwsTracer() : this(true)
         {
-            new EwsTracer(true);
         }
 
         public EwsTracer(bool enabled)

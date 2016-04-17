@@ -103,6 +103,7 @@ try
 
     if ($localVersion -lt $onlineVersion)
     {
+		Write-Verbose -Message "Detected new module build online. Local version: $localVersion, Remote version: $onlineVersion"
         Write-EwsUpdateLog -Message "Detected new module build online. Local version: $localVersion, Remote version: $onlineVersion" -CallingFunction "Script Root";
         Invoke-Expression -Command (Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/IvanFranjic/XEws/master/InstallXEwsModule.ps1');
     }
