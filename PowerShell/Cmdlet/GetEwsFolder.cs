@@ -10,7 +10,7 @@
     {
         #region Properties
 
-        private FolderId rootFolder = EwsWellKnownFolder.GetWellKnownFolderId(WellKnownFolderName.Inbox);
+        private FolderId rootFolder = EwsWellKnownFolder.GetWellKnownFolderId(WellKnownFolderName.MsgFolderRoot);
         [Parameter(Position = 0)]
         public FolderId RootFolder
         {

@@ -71,16 +71,18 @@
         /// <returns></returns>
         private string GetXmlText(XmlDocument xmlDocument)
         {
-            using (StringWriter stringWriter = new StringWriter())
-            {
-                using (var xmlWriter = XmlWriter.Create(stringWriter))
-                {
-                    xmlDocument.WriteTo(xmlWriter);
-                    xmlWriter.Flush();
+            return xmlDocument.OuterXml;
 
-                    return stringWriter.GetStringBuilder().ToString();
-                }
-            }
+            //using (StringWriter stringWriter = new StringWriter())
+            //{
+            //    using (var xmlWriter = XmlWriter.Create(stringWriter))
+            //    {
+            //        xmlDocument.WriteTo(xmlWriter);
+            //        xmlWriter.Flush();
+
+            //        return stringWriter.GetStringBuilder().ToString();
+            //    }
+            //}
         }
 
 

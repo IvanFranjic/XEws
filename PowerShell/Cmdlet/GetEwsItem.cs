@@ -76,6 +76,20 @@
             }
         }
 
+        private PropertyDefinitionBase[] customProperties = null;
+        [Parameter()]
+        public PropertyDefinitionBase[] CustomProperty
+        {
+            get
+            {
+                return this.customProperties;
+            }
+            set
+            {
+                this.customProperties = value;
+            }
+        }
+
         #endregion
 
         #region Fields
@@ -115,6 +129,16 @@
         protected override void ProcessRecord()
         {
             ItemView itemView = new ItemView(30);
+
+            if (this.CustomProperty != null)
+            {
+                PropertySet propertySet = new PropertySet(BasePropertySet.FirstClassProperties);
+
+                foreach (PropertyDefinitionBase customProp in this.CustomProperty)
+                    propertySet.Add(customProp);
+
+                itemView.PropertySet = propertySet;
+            }            
             
             EwsItem ewsItems = new EwsItem(this.EwsSession, this.FolderRoot, itemView, this.SearchFilter);
             ewsItems.SearchResultFound += OnSearchResultFound;
