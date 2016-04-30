@@ -11,6 +11,7 @@
 
         #region Fields
 
+        // TODO: use this search folder in FindItem instead of providing property to the method!?
         private FolderId searchFolder;
         private ItemView searchItemView;
 

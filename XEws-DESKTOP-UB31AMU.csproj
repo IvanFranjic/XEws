@@ -82,6 +82,8 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="InstallXEwsModule.ps1" />
+    <Compile Include="Helper\EwsHelper.cs" />
+    <Compile Include="Model\EwsCategory.cs" />
     <Compile Include="Model\EwsMailTip.cs" />
     <Compile Include="Model\EwsMailTipType.cs" />
     <Compile Include="Model\EwsSoapMessage.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="PowerShell\Cmdlet\GetEwsFolder.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsItem.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsMailTip.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetEwsMasterCategoryConfiguration.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsSession.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsWellKnownFolderId.cs" />
     <Compile Include="PowerShell\Cmdlet\ImportEwsSession.cs" />
