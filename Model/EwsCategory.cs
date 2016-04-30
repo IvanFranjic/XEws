@@ -2,6 +2,7 @@
 {
     using System.Xml;
     using XEws.Helper;
+    using Microsoft.Exchange.WebServices.Data;
 
     public class EwsCategory
     {
@@ -23,6 +24,11 @@
 
         }
 
+        public static void RebuildCategoryList(ExchangeService ewsSession, FolderId calendarFolderId)
+        {
+            UserConfiguration userConfig = new UserConfiguration(ewsSession);
+            userConfig.Save("CategoryList", calendarFolderId);
+        }
         
     }
 }
