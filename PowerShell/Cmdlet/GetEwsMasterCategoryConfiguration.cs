@@ -31,8 +31,8 @@
                 {
                     if (responseException.ErrorCode == ServiceError.ErrorItemNotFound)
                         this.WriteWarning("CategoryList item not found in specified calendar folder.");
-
-                    this.WriteWarning(responseException.Message);
+                    else
+                        this.WriteWarning(responseException.Message);
 
                 }
                 catch (Exception exception)

@@ -3,6 +3,7 @@
     using XEws.Model;    
     using System.Management.Automation;
     using Microsoft.Exchange.WebServices.Data;
+    using CalendarFolder = Microsoft.Exchange.WebServices.Data.CalendarFolder;
 
     [Cmdlet(VerbsCommon.New, "EwsMasterCategoryConfiguration")]
     public class NewEwsMasterCategoryConfiguration : EwsCmdlet
@@ -38,7 +39,24 @@
 
         protected override void ProcessRecord()
         {
-            EwsCategory.RebuildCategoryList(this.EwsSession, CalendarFolder.Id);
+            if (!(this.CalendarFolder is CalendarFolder))
+                this.WriteWarning("Provided folder is not Calendar folder. Category list can be only stored in Calendar folder.");
+
+            else
+            {
+                try
+                {
+                    CalendarFolder calendarFolder = (CalendarFolder)this.CalendarFolder;
+                    UserConfiguration ewsMasterCategoryConfiguration = UserConfiguration.Bind(this.EwsSession, "CategoryList", calendarFolder.Id, UserConfigurationProperties.All);
+                    this.WriteWarning("CategoryList already exist.");
+                    return;
+                }
+                catch
+                {
+                    EwsCategory.RebuildCategoryList(this.EwsSession, CalendarFolder.Id);
+                }
+            }
+            
         }
 
         #endregion

@@ -84,11 +84,15 @@
     <None Include="InstallXEwsModule.ps1" />
     <Compile Include="Helper\EwsHelper.cs" />
     <Compile Include="Model\EwsCategory.cs" />
+    <Compile Include="Model\EwsCategoryList.cs" />
+    <Compile Include="Model\EwsFolderAssociatedItem.cs" />
+    <Compile Include="Model\EwsFolderAssociateItemType.cs" />
     <Compile Include="Model\EwsMailTip.cs" />
     <Compile Include="Model\EwsMailTipType.cs" />
     <Compile Include="Model\EwsSoapMessage.cs" />
     <Compile Include="Model\EwsTracer.cs" />
     <Compile Include="Model\EwsUserNameFormat.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetEwsFolderAssociatedItem.cs" />
     <Compile Include="PowerShell\Cmdlet\NewEwsMasterCategoryConfiguration.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsAvailability.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsExtendedPropertySet.cs" />
