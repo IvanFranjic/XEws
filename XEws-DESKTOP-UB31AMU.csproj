@@ -92,7 +92,7 @@
     <Compile Include="Model\EwsSoapMessage.cs" />
     <Compile Include="Model\EwsTracer.cs" />
     <Compile Include="Model\EwsUserNameFormat.cs" />
-    <Compile Include="PowerShell\Cmdlet\GetEwsFolderAssociatedItem.cs" />
+    <Compile Include="PowerShell\Cmdlet\GetFolderAssociateItem.cs" />
     <Compile Include="PowerShell\Cmdlet\NewEwsMasterCategoryConfiguration.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsAvailability.cs" />
     <Compile Include="PowerShell\Cmdlet\GetEwsExtendedPropertySet.cs" />
@@ -109,6 +109,7 @@
     <Compile Include="Model\EwsSearchResultEntryEventArgs.cs" />
     <Compile Include="PowerShell\Cmdlet\RemoveEwsSession.cs" />
     <Compile Include="PowerShell\Cmdlet\SetEwsSession.cs" />
+    <Compile Include="PowerShell\Cmdlet\UpdateEwsMasterCategoryConfiguration.cs" />
     <Compile Include="PowerShell\EwsCmdlet.cs" />
     <Compile Include="PowerShell\EwsCmdletAbstract.cs" />
     <Compile Include="PowerShell\EwsMailTipCmdlet.cs" />

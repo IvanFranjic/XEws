@@ -17,6 +17,16 @@
             set;
         }
 
+        private byte[] xmlData = null;
+
+        [Parameter(Mandatory = false)]
+        public byte[] XmlData
+        {
+            get { return xmlData; }
+            set { xmlData = value; }
+        }
+
+
         #endregion
 
         #region Fields
@@ -53,7 +63,7 @@
                 }
                 catch
                 {
-                    EwsCategory.RebuildCategoryList(this.EwsSession, CalendarFolder.Id);
+                    EwsCategory.RebuildCategoryList(this.EwsSession, CalendarFolder.Id, xmlData);
                 }
             }
             

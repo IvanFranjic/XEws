@@ -1,4 +1,7 @@
-﻿namespace XEws.PowerShell.Cmdlet
+﻿using XEws.Helper;
+using XEws.Model;
+
+namespace XEws.PowerShell.Cmdlet
 {
     using System.Management.Automation;
     using Microsoft.Exchange.WebServices.Data;
@@ -8,12 +11,15 @@
     [Cmdlet(VerbsCommon.Get, "EwsMasterCategoryConfiguration")]
     public class GetEwsMasterCategoryConfiguration : EwsCmdlet
     {
-        [Parameter(Mandatory = false)]
+        [Parameter(Mandatory = true)]
         public Folder CalendarFolder
         {
             get;
             set;
         }
+
+        [Parameter(Mandatory = false)]
+        public SwitchParameter RawData { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -24,8 +30,21 @@
                 {
                     CalendarFolder calendarFolder = (CalendarFolder)this.CalendarFolder;
                     UserConfiguration ewsMasterCategoryConfiguration = UserConfiguration.Bind(this.EwsSession, "CategoryList", calendarFolder.Id, UserConfigurationProperties.All);
+                    
+                    if (this.RawData.IsPresent)
+                        this.WriteObject(ewsMasterCategoryConfiguration);
+                    else
+                    {
+                        string categoryListDefinition = EwsHelper.GetStringFromByte(ewsMasterCategoryConfiguration.XmlData);
 
-                    this.WriteObject(ewsMasterCategoryConfiguration);
+                        if (string.IsNullOrEmpty(categoryListDefinition))
+                            this.WriteObject(ewsMasterCategoryConfiguration);
+                        else
+                        {
+                            EwsCategoryList ewsCategoryList = new EwsCategoryList(categoryListDefinition);
+                            this.WriteObject(ewsCategoryList.ReadCategory(), true);
+                        }
+                    }
                 }
                 catch (ServiceResponseException responseException)
                 {

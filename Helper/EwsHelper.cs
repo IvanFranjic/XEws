@@ -15,6 +15,9 @@ namespace XEws.Helper
         /// <returns></returns>
         public static string GetStringFromByte(byte[] byteArray)
         {
+            if (byteArray == null)
+                return null;
+
             return Encoding.UTF8.GetString(byteArray);
         }
     }

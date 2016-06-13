@@ -52,5 +52,19 @@
 
             return userConfig;
         }
+
+        public virtual UserConfiguration GetFolderAssociatedItem(ExchangeService ewsSession, FolderId faiFolder,
+            EwsFolderAssociateItemType itemType)
+        {
+            try
+            {
+                UserConfiguration userConfig = UserConfiguration.Bind(ewsSession, itemType.ToString(), faiFolder, UserConfigurationProperties.All);
+                return userConfig;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
     }
 }

@@ -120,8 +120,35 @@
         /// <returns></returns>
         internal bool ValidateServerCertificateCallBack(object sender, X509Certificate certificateToVerify, X509Chain certificateChain, SslPolicyErrors sslErrors)
         {
-            // TODO: for now just return true. Consider expiration checks, trust chain...
+            // At this point only dont connect if certificate expired.
+
+            DateTime certificateExpiration = GetDateFromString(certificateToVerify.GetExpirationDateString());
+
+            // lets fail if certificate expired
+            if (certificateExpiration < DateTime.Now)
+                return false;
+
             return true;
+        }
+
+        /// <summary>
+        /// Method tries to convert string to date time. If it's not able to parse string
+        /// returns datetime +5 mins from now.
+        /// </summary>
+        /// <param name="dateTime">string representation that needs to be converted to datetime value</param>
+        /// <returns></returns>
+        internal DateTime GetDateFromString(string dateTime)
+        {
+            DateTime parsedResult;
+
+            if (DateTime.TryParse(dateTime, out parsedResult))
+            {
+                return parsedResult;
+            }
+
+            // If we cannot parse date, just return 5 minutes
+            // from now to avoid fail
+            return DateTime.Now.AddMinutes(5);
         }
 
         #endregion
