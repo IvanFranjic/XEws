@@ -1,16 +1,28 @@
-﻿namespace XEws.Model
+﻿
+
+namespace XEws.Model
 {
     using System;
     using System.Xml;
+    using System.IO;
+    using System.Text;
     using System.Collections.Generic;
 
     public class EwsCategoryList : EwsFolderAssociatedItem
     {
         private string xmlStringData;
 
-        public EwsCategoryList(string loadFilePath)
+        public EwsCategoryList(string categoryData)
         {
-            xmlStringData = loadFilePath;
+            /*
+                Loading xml using UTF encoded string can
+                cause script to fail in case UTF has BOM
+                string. To overcome that, memory stream 
+                will be created and xmml loaded from byte
+                instead of string itself.
+            */
+
+            xmlStringData = categoryData;
         }
 
 
@@ -18,7 +30,11 @@
         {
             List<EwsCategory> oneCategories = new List<EwsCategory>();
             XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.LoadXml(xmlStringData);
+            
+            xmlDocument.Load(new MemoryStream(Encoding.UTF8.GetBytes(xmlStringData)));
+            
+            // xmlDocument.LoadXml(xmlStringData);
+
             try
             {
                 foreach (XmlNode childs in xmlDocument.ChildNodes)
@@ -40,8 +56,11 @@
 
         public string InsertElement(EwsCategory category)
         {
+
             XmlDocument xmlDocument = new XmlDocument();
-            xmlDocument.LoadXml(xmlStringData);
+            xmlDocument.Load(new MemoryStream(Encoding.UTF8.GetBytes(xmlStringData)));
+            //xmlDocument.LoadXml(xmlStringData);
+
             XmlElement categoryElement = xmlDocument.CreateElement("category", "CategoryList.xsd"); //<category/>
 
             string[] xmlAttributes = new[]
